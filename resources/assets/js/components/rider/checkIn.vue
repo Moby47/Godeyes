@@ -10,32 +10,30 @@
     <div class='dark-shade'></div>
 </div>
 
-<h2 class="text-center fg-white pulse" style='font-family: "Orbitron";'>GodsEye</h2>
 
 <div class='centered slideUp'>
 
-<p class="text-center fg-white sub-font-fam">Choose a Role</p>
-
-<div class="row text-center">
-
-<div class="cell order-1 mr-5">
-    <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='rider()' 
-    style="background-color: #fbb203">
-        <span class="caption">Rider</span>
-        <span class="mif-eye icon  ani-float"></span>
-    </button>
-</div>
+<p class="text-center fg-white sub-font-fam">checkin</p>
 
 
-<div class="cell order-2">
-        <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='captain()' 
-        style="background-color: #00B0FF">
-            <span class="caption">Captain</span>
-            <span class="mif-gamepad icon  ani-float"></span>
-        </button>
-    </div>
 
-</div>
+    <form>
+        <div class="form-group">
+            <label>select captain</label>
+            <select data-role="select">
+                <option class="fg-cyan">One</option>
+                <option selected class="text-bold fg-red">Two</option>
+                <option class="fg-green">Three</option>
+            </select>
+            <small class="text-muted">We'll never share your email with anyone else.</small>
+        </div>
+       
+        <div class="form-group">
+            <button class="button success">Submit data</button>
+            <input type="button" class="button" value="back">
+        </div>
+    </form>
+
 
 </div>
 

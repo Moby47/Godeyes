@@ -10,7 +10,6 @@
     <div class='dark-shade'></div>
 </div>
 
-<h2 class="text-center fg-white pulse" style='font-family: "Orbitron";'>GodsEye</h2>
 
 <div class='centered slideUp'>
 
@@ -21,7 +20,7 @@
 <div class="cell order-1 mr-5">
     <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='rider()' 
     style="background-color: #fbb203">
-        <span class="caption">Rider</span>
+        <span class="caption">Drop name</span>
         <span class="mif-eye icon  ani-float"></span>
     </button>
 </div>
@@ -30,7 +29,7 @@
 <div class="cell order-2">
         <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='captain()' 
         style="background-color: #00B0FF">
-            <span class="caption">Captain</span>
+            <span class="caption">Timeline</span>
             <span class="mif-gamepad icon  ani-float"></span>
         </button>
     </div>
@@ -39,7 +38,7 @@
 
 </div>
 
-
+<small class="text-muted">We'll never share your email with anyone else.</small>
 
 </div>
 

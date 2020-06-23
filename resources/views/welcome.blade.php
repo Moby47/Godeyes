@@ -16,6 +16,7 @@
 <!--nprogress-css-->
 <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" />
 
+<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
 
 <link href="/css/app.css" rel="stylesheet" />
 <link href="/css/custom.css" rel="stylesheet" />
@@ -36,7 +37,8 @@
               
               
                     </div>
-
+                    <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
+                    
          <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
         <script src="{{asset('/js/app.js')}}"></script>
 
