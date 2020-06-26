@@ -17,7 +17,7 @@
     
     <div class="cell order-2">
             <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='home()' 
-            style="background-color: #daa09b">
+            style="background-color: #e08981">
                 <span class="caption">Home</span>
                 <span class="mif-home icon  ani-float"></span>
             </button>

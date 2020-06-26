@@ -2,7 +2,7 @@
     <div>
 
 
-    <div class='bg-col'>
+    <div class='bg-col mt-4' >
 
 <div class='bg-start'>
     <div class='dark-shade'></div>
@@ -14,7 +14,7 @@
 
 <h4 class="text-center fg-green sub-font-fam">25th</h4>
 
-<h4 class="text-center fg-green sub-font-fam">evening checkin</h4>
+<h4 class="text-center fg-green sub-font-fam">Evening check-In</h4>
 
 
 </div>
@@ -29,7 +29,7 @@
         
         <div class="cell order-2">
                 <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='home()' 
-                style="background-color: #daa09b">
+                style="background-color: #e08981">
                     <span class="caption">Home</span>
                     <span class="mif-home icon  ani-float"></span>
                 </button>

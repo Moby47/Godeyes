@@ -16,16 +16,6 @@ import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 
-//toated
-// register the plugin on vue
-import Toasted from 'vue-toasted';
-Vue.use(Toasted)
-// you can also pass options, check options reference below
-//Vue.use(Toasted, Options)
-
-//animate.css
-require('vue2-animate/dist/vue2-animate.min.css')
-
 //vur router
 import router from './router'
 
@@ -95,6 +85,7 @@ if(localStorage.getItem('token')){
  */
 
 Vue.component('index', require('./components/index.vue'));
+Vue.component('floating', require('./components/includes/floating.vue'));
 
 const app = new Vue({
     el: '#app',

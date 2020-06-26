@@ -13,37 +13,71 @@
     
     <div class='centered slideUp'>
     
-    <h4 class="text-center sub-font-fam">Select Bus Captain</h4>
+    <h4 class="text-center sub-font-fam">Trip History</h4>
     
     
     
-    <table class="table cell-border striped">
-            <thead>
-            <tr>
-                <th>checkin</th>
-                <th>date</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="info">morning</td>
-                <td class="light">@billy</td>
-            </tr>
-            <tr>
-                <td class="alert">evening</td>
-                <td class="light">@stevy</td>
-            </tr>
-          
-            </tbody>
-        </table>
-    
-        <div class="form-group">
-                <input type="button" class="button" value="back" @click.prevent='back()'>
-            </div>
+
+  <v-card
+    class="mx-auto mt-3"
+    max-width="344"
+  >
+    <v-card-text>
+      <div>Mon 23th April 07:30AM</div>
+     
+    </v-card-text>
+    <v-card-actions>
+      <v-btn
+        text
+        color="accent-4"
+        @click.prevent='more()'
+      >
+        More
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+
+      <v-card
+    class="mx-auto mt-3"
+    max-width="344"
+  >
+    <v-card-text>
+      <div>Mon 23th April 07:30AM</div>
+     
+    </v-card-text>
+    <v-card-actions>
+      <v-btn 
+        text
+        color="accent-4"
+      >
+        More
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+
+    <v-card
+    class="mx-auto mt-3"
+    max-width="344"
+  >
+    <v-card-text>
+      <div>Mon 23th April 07:30AM</div>
+     
+    </v-card-text>
+    <v-card-actions>
+      <v-btn
+        text
+        color="accent-4"
+      >
+        More
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+      
 
     </div>
     
     
+    <floating></floating>
     
     </div>
     
@@ -61,9 +95,9 @@
           
         },
         methods: {
-            back(){
+            more(){
                       
-                      this.$router.go(-1)
+                     alert("Feature Under Maintenance")
                        
                      },
         },
