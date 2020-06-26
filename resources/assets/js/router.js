@@ -11,8 +11,10 @@ import fullName from './components/rider/fullName.vue'
 import rider from './components/rider/rider.vue'
 import success from './components/rider/success.vue'
 import timeline from './components/rider/timeline.vue'
+import notfound from './components/notfound.vue'
 
 export default new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',
@@ -61,6 +63,14 @@ export default new Router({
              meta:{
               //  auth: true
             }
-        }
+        },
+        {
+            path: '*',
+            name: 'notfound',
+            component: notfound,
+             meta:{
+              
+            }
+        },
     ]
 })

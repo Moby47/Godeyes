@@ -13,21 +13,22 @@
 
 <div class='centered slideUp'>
 
-<p class="text-center fg-white sub-font-fam">one time entry</p>
+<h4 class="text-center sub-font-fam">Enter Profile Info</h4>
 
 
 
     <form>
         <div class="form-group">
-            <label>Full name</label>
-            <input type="text" placeholder="Enter email"/>
-            <small class="text-muted">We'll never share your email with anyone else.</small>
+            <input type="text" placeholder="First Name"/>
+            <input type="text" placeholder="Last Name"/>
+            <input type="email" placeholder="Email"/>
         </div>
        
         <div class="form-group">
-            <button class="button success">Submit data</button>
-            <input type="button" class="button" value="back">
+            <button class="button success">Submit</button>
+            <input type="button" class="button" value="back" @click.prevent='back()'>
         </div>
+         <small class="text-warning">*This is a one time setup.</small>
     </form>
 
 
@@ -51,23 +52,11 @@ export default {
       
     },
     methods: {
-        display(){
-          
-             var display = Metro.session.getItem('display')
-                        if(display){
-                            //old guest, do nothing
-                        }else{
-                            //new guest:
-                        //do needful, then
-                        //Metro.session.setItem('display','display')
-                        }
-                
-        },
-     /*   upload(){
-            this.$router.push({name: "upload"});
-        },
-    */
-    
+        back(){
+                  
+                  this.$router.go(-1)
+                   
+                 },
     },
 }
 </script>

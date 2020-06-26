@@ -1,29 +1,45 @@
 <template>
     <div>
 
-        <!--
-<vue-particles color="#fdf9c6">
-</vue-particles>
--->
+
+    <div class='bg-col'>
 
 <div class='bg-start'>
     <div class='dark-shade'></div>
 </div>
 
-<h2 class="text-center fg-white pulse" style='font-family: "Orbitron";'>Success!!</h2>
+<h1 class="text-center fg-green pulse" style='font-family: "Orbitron";'>Success!!</h1>
 
 <div class='centered slideUp'>
 
-<p class="text-center fg-white sub-font-fam">25th</p>
+<h4 class="text-center fg-green sub-font-fam">25th</h4>
 
-<p class="text-center fg-white sub-font-fam">evening checkin</p>
+<h4 class="text-center fg-green sub-font-fam">evening checkin</h4>
+
+
+</div>
+
 
 
 </div>
 
+<div class='centered slideUp mt-5'>
+    
+        <div class="row text-center">
+        
+        <div class="cell order-2">
+                <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='home()' 
+                style="background-color: #daa09b">
+                    <span class="caption">Home</span>
+                    <span class="mif-home icon  ani-float"></span>
+                </button>
+            </div>
+        
+        </div>
+        
+        </div>
 
-
-</div>
+        </div>
 
 </template>
 
@@ -39,23 +55,15 @@ export default {
       
     },
     methods: {
-        display(){
-          
-             var display = Metro.session.getItem('display')
-                        if(display){
-                            //old guest, do nothing
-                        }else{
-                            //new guest:
-                        //do needful, then
-                        //Metro.session.setItem('display','display')
-                        }
-                
+        exit(){
+            window.top.close();
+         },
+         home(){
+            this.$router.push({name: "index"});
+        },  
         },
-     /*   upload(){
-            this.$router.push({name: "upload"});
-        },
-    */
+      
     
-    },
+
 }
 </script>

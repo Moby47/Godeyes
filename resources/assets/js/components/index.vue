@@ -1,37 +1,31 @@
 <template>
     <div>
 
-        <!--
-<vue-particles color="#fdf9c6">
-</vue-particles>
--->
 
 <div class='bg-start'>
     <div class='dark-shade'></div>
 </div>
 
-<h2 class="text-center fg-white pulse" style='font-family: "Orbitron";'>GodsEye</h2>
+<h1 class="text-center slideUp mb-5" style='font-family: "Orbitron";'>GodsEye</h1>
 
-<div class='centered slideUp'>
-
-<p class="text-center fg-white sub-font-fam">Choose a Role</p>
+<div class='centered slideUp mt-5'>
 
 <div class="row text-center">
 
 <div class="cell order-1 mr-5">
     <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='rider()' 
-    style="background-color: #fbb203">
+    style="background-color: #5aa599">
         <span class="caption">Rider</span>
-        <span class="mif-eye icon  ani-float"></span>
+        <span class="mif-bus icon  ani-float"></span>
     </button>
 </div>
 
 
 <div class="cell order-2">
         <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='captain()' 
-        style="background-color: #00B0FF">
+        style="background-color: #daa09b">
             <span class="caption">Captain</span>
-            <span class="mif-gamepad icon  ani-float"></span>
+            <span class="mif-user-secret icon  ani-float"></span>
         </button>
     </div>
 
@@ -57,22 +51,24 @@ export default {
       
     },
     methods: {
-        display(){
+        rider(){
           
-             var display = Metro.session.getItem('display')
+     var display = Metro.session.getItem('newRider')
                         if(display){
                             //old guest, do nothing
+                            this.$router.push({name: "rider"});
                         }else{
                             //new guest:
-                        //do needful, then
-                        //Metro.session.setItem('display','display')
+                            Metro.session.setItem('newRider','newRider')
+                         this.$router.push({name: "fullName"});
+                       
                         }
                 
         },
-     /*   upload(){
-            this.$router.push({name: "upload"});
+        captain(){
+           // this.$router.push({name: "upload"});
         },
-    */
+    
     
     },
 }
