@@ -41,7 +41,7 @@
     <div class="cell flex-align-self-end"></div>
     
 </div>
-    <b class="text-warning">*This is a one time setup.</b>
+    <b class="bg-white">*This is a one time setup.</b>
 
 
 </div>

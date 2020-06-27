@@ -24,12 +24,13 @@
   >
     <v-card-text>
       <div>Mon 23th April 07:30AM</div>
-     
+     <small>With Captain name surname</small>
     </v-card-text>
     <v-card-actions>
       <v-btn
         text
-        color="accent-4"
+        color="#3b6b63"
+        class='fg-white'
         @click.prevent='more()'
       >
         More
@@ -37,42 +38,17 @@
     </v-card-actions>
   </v-card>
 
-      <v-card
-    class="mx-auto mt-3"
-    max-width="344"
-  >
-    <v-card-text>
-      <div>Mon 23th April 07:30AM</div>
      
-    </v-card-text>
-    <v-card-actions>
-      <v-btn 
-        text
-        color="accent-4"
-      >
-        More
-      </v-btn>
-    </v-card-actions>
-  </v-card>
-
-    <v-card
-    class="mx-auto mt-3"
-    max-width="344"
-  >
-    <v-card-text>
-      <div>Mon 23th April 07:30AM</div>
-     
-    </v-card-text>
-    <v-card-actions>
+      
+  <div class='text-center'>
       <v-btn
         text
-        color="accent-4"
+        color="#f9b8b4"
+        class='fg-white'
       >
-        More
+        Load More
       </v-btn>
-    </v-card-actions>
-  </v-card>
-      
+  </div>
 
     </div>
     

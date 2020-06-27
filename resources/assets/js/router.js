@@ -11,6 +11,12 @@ import fullName from './components/rider/fullName.vue'
 import rider from './components/rider/rider.vue'
 import success from './components/rider/success.vue'
 import timeline from './components/rider/timeline.vue'
+
+import daily from './components/captain/daily.vue'
+import alltime from './components/captain/alltime.vue'
+import board from './components/captain/board.vue'
+import addRider from './components/captain/addRider.vue'
+
 import notfound from './components/notfound.vue'
 
 export default new Router({
@@ -65,6 +71,38 @@ export default new Router({
             }
         },
         {
+            path: '/daily-records',
+            name: 'daily',
+            component: daily,
+             meta:{
+              //  auth: true
+            }
+        },
+        {
+            path: '/alltime-records',
+            name: 'alltime',
+            component: alltime,
+             meta:{
+              //  auth: true
+            }
+        },
+        {
+            path: '/board',
+            name: 'board',
+            component: board,
+             meta:{
+              //  auth: true
+            }
+        },
+        {
+            path: '/add-rider',
+            name: 'addRider',
+            component: addRider,
+             meta:{
+              //  auth: true
+            }
+        },
+        {
             path: '*',
             name: 'notfound',
             component: notfound,
@@ -72,5 +110,6 @@ export default new Router({
               
             }
         },
+      
     ]
 })
