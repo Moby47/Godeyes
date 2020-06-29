@@ -16,11 +16,29 @@
     <h4 class="text-center sub-font-fam">Trip History</h4>
     
     
-
+    <div class="social-box">
+        <div class="header  fg-white" style="background-color: #3b6b63">
+            <div class="title">{{name}}</div>
+        </div>
+        <ul class="skills">
+            <li>
+                <div class="text-bold">{{week}}</div>
+                <div>This Week</div>
+            </li>
+            <li>
+                <div class="text-bold">{{month}}</div>
+                <div>This Month</div>
+            </li>
+            <li>
+                <div class="text-bold">{{total}}</div>
+                <div>Total Trips</div>
+            </li>
+        </ul>
+    </div>
 
 
   <v-card
-    class="mx-auto mt-3"
+    class="mx-auto mt-2"
     max-width="344"
     v-for='con in content'  v-bind:key='con.id'
   >
@@ -28,22 +46,12 @@
       <div>{{con.created_at | formatDate}}</div>
      <small>With Captain {{con.captain}}</small>
     </v-card-text>
-    <v-card-actions>
-      <v-btn
-        text
-        color="#3b6b63"
-        class='fg-white'
-        @click.prevent='more()'
-      >
-        More
-      </v-btn>
-    </v-card-actions>
   </v-card>
 
      
       
   <div class='text-center'>
-       <ul class="pagination mb-15">
+       <ul class="pagination mb-5">
                             <li class="page-item"><a class="page-link" href="#" @click.prevent="get(pagination.prev_page_url)" :disabled="!pagination.prev_page_url"> Prev </a></li>
 
                             <li class="page-item"><a class="page-link" href="#"><span>{{pagination.current_page}} of {{pagination.last_page}}</span></a></li>
@@ -69,11 +77,19 @@
             return {
                content:[],
                empty:false,
-              pagination:[]
+              pagination:[],
+              week:'-',
+              month:'-',
+              total:'-',
+              name:''
             }
         },
         mounted(){
           this.get()
+          this.getWeek()
+          this.getMonth()
+          this.getTotal()
+          this.name = Metro.session.getItem('name') + ' '+Metro.session.getItem('surname')
         },
         methods: {
             more(){
@@ -135,6 +151,41 @@
            document.documentElement.scrollTop = 0;
           this.pagination = pagination;
               },
+
+          getWeek(){
+                fetch('/api/week/'+Metro.session.getItem('surname'))
+            .then(res => res.json())
+            .then(res=>{
+               this.week = res
+            })
+            .catch(error =>{
+              console.log(error)
+                })
+         },
+
+         getMonth(){
+                fetch('/api/month/'+Metro.session.getItem('surname'))
+            .then(res => res.json())
+            .then(res=>{
+               this.month = res
+            })
+            .catch(error =>{
+              console.log(error)
+                })
+         },
+
+         getTotal(){
+                fetch('/api/total/'+Metro.session.getItem('surname'))
+            .then(res => res.json())
+            .then(res=>{
+               this.total = res
+            })
+            .catch(error =>{
+              console.log(error)
+                })
+         }
+
+
 
         },
     }

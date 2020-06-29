@@ -49,6 +49,10 @@
             }
         },
         mounted(){
+            var rider = Metro.session.getItem('level') 
+            if(rider != 'rider'){
+                this.$router.push({name: "board"});
+            }
          this.name = Metro.session.getItem('name')
         },
         methods: {

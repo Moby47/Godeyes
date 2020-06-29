@@ -103,5 +103,25 @@ class riderController extends Controller
     }
 
    
+    public function week($surname)
+    {
+        $ago = \carbon\carbon::now()->subWeek();
+        $now = \carbon\carbon::now();
+        return $data = checkin::where('surname','=',$surname)
+        ->whereBetween('created_at',[$ago,$now])->pluck('surname')->count();
+    }
+
+    public function month($surname)
+    {
+        $ago = \carbon\carbon::now()->subMonth();
+        $now = \carbon\carbon::now();
+        return $data = checkin::where('surname','=',$surname)
+        ->whereBetween('created_at',[$ago,$now])->pluck('surname')->count();
+    }
+
+    public function total($surname)
+    {
+        return $data = checkin::where('surname','=',$surname)->pluck('surname')->count();
+    }
  
 }

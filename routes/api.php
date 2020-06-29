@@ -22,6 +22,10 @@ Route::Post('/create-rider', 'riderController@createRider');
 Route::Post('/check-in', 'riderController@checkIn');
 Route::Get('/logs/{surname}', 'riderController@logs');
 Route::Get('/load-more-log/{surname}/{count}', 'riderController@loadMoreLog');
+Route::Get('/week/{surname}', 'riderController@week');
+Route::Get('/month/{surname}', 'riderController@month');
+Route::Get('/total/{surname}', 'riderController@total');
+
 
 Route::Post('/add-captain', 'captainController@addCaptain');
 Route::get('/get-captains', 'captainController@getCaptains');

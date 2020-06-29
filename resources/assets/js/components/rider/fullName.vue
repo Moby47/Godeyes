@@ -100,6 +100,7 @@ export default {
                              Metro.session.setItem('name',this.Name)
                              Metro.session.setItem('surname',this.Surname)
                              Metro.session.setItem('mail',this.mail)
+                             Metro.session.setItem('level','rider')
                              Metro.activity.close(activity);
                              this.$router.push({name: "rider"});
                           
