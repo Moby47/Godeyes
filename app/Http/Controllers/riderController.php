@@ -36,13 +36,63 @@ class riderController extends Controller
 
     public function checkIn(Request $request)
     {
-         //save
+         
+        if(date("H") < 12){
+        
+            $time = "morning";
+            $check = checkin::where('surname','=', $request->input('Surname'))
+            ->where('created_at','>', '05:21:34')->select('id')->pluck('id')->first();
+            if (empty($check))
+            {
+                //save
+             $save = new checkin;
+             $save->name = $request->input('Name');
+             $save->surname = $request->input('Surname');
+             $save->captain = $request->input('Captain');
+             $save->save();
+             return 1;
+            }else{
+                return 47;
+            }
+
+        }elseif(date("H") > 11 && date("H") < 18){
+
+            $time = "afternoon";
+            $check = checkin::where('surname','=', $request->input('Surname'))
+            ->where('created_at','>', '11:21:34')->select('id')->pluck('id')->first();
+            if (empty($check))
+            {
+                //save
+             $save = new checkin;
+             $save->name = $request->input('Name');
+             $save->surname = $request->input('Surname');
+             $save->captain = $request->input('Captain');
+             $save->save();
+             return 1;
+            }else{
+                return 47;
+            }
+
+        }elseif(date("H") > 17){
+
+         $time = "evening";
+         $check = checkin::where('surname','=', $request->input('Surname'))
+        ->where('created_at','>', '16:21:34')->select('id')->pluck('id')->first();
+        if (empty($check))
+        {
+            //save
          $save = new checkin;
          $save->name = $request->input('Name');
          $save->surname = $request->input('Surname');
          $save->captain = $request->input('Captain');
          $save->save();
          return 1;
+        }else{
+            return ['status'=>47,'time'=>$time];
+        }
+        }
+        
+         
     }
 
 

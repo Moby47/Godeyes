@@ -55880,6 +55880,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         if (res.data == 1) {
                             Metro.activity.close(activity);
                             _this2.$router.push({ name: "success" });
+                        } else if (res.data.status == 47) {
+                            Metro.activity.close(activity);
+                            alert('Check-In is complete for this ' + res.data.time);
                         } else {
                             Metro.activity.close(activity);
                             alert('An error coccured, please try again.');
