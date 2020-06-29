@@ -52,13 +52,12 @@ export default {
     methods: {
         rider(){
           
-     var display = Metro.session.getItem('newRider')
+     var display = Metro.session.getItem('name')
                         if(display){
                             //old guest, do nothing
                             this.$router.push({name: "rider"});
                         }else{
-                            //new guest:
-                            Metro.session.setItem('newRider','newRider')
+                            //new guest
                          this.$router.push({name: "fullName"});
                        
                         }

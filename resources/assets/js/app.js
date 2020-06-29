@@ -85,6 +85,13 @@ if(localStorage.getItem('token')){
 Vue.component('index', require('./components/index.vue'));
 Vue.component('floating', require('./components/includes/floating.vue'));
 
+import moment from 'moment'
+Vue.filter('formatDate', function(value) {
+    if (value) {
+      return moment(String(value)).format('MMMM Do YYYY, h:mm:ss a')
+    }
+  });
+
 const app = new Vue({
     el: '#app',
     router

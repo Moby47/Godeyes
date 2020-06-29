@@ -6,7 +6,7 @@
 
     </div>
     
-    <h4 class="text-center slideUp mb-5" style='font-family: "Orbitron";'>Hi, {Name}</h4>
+    <h4 class="text-center slideUp mb-5" style='font-family: "Orbitron";'>Hi, {{this.name}}</h4>
     
     <div class='centered slideUp mt-5'>
     
@@ -45,11 +45,11 @@
     export default {
         data(){
             return {
-               
+               name:''
             }
         },
         mounted(){
-         
+         this.name = Metro.session.getItem('name')
         },
         methods: {
             checkin(){
