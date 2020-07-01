@@ -28,6 +28,8 @@
             <p class='fg-red shake' v-show="errors.has('Surname')">{{ errors.first('Surname') }}</p>
             <input type="email" placeholder="Email" v-model='mail' class='mt-2' name='Email' v-validate='"required|email|max:100"'/>
             <p class='fg-red shake' v-show="errors.has('Email')">{{ errors.first('Email') }}</p>
+            <input type="password" placeholder="Password" v-model='pass' class='mt-2' name='Password' v-validate='"required"'/>
+            <p class='fg-red shake' v-show="errors.has('Password')">{{ errors.first('Password') }}</p>
         </div>
        
         <div class="form-group text-center">
@@ -42,8 +44,7 @@
     <div class="cell flex-align-self-end"></div>
     
 </div>
-    <b class="bg-white">*This is a one time setup.</b>
-
+   
 
 </div>
 
@@ -61,16 +62,17 @@ export default {
            Name:'',
            Surname:'',
            mail:'',
+           pass:''
         }
     },
     mounted(){
-        var display = Metro.session.getItem('name')
+       /* var display = Metro.session.getItem('name')
                         if(display){
                             //old guest, do nothing
                             this.$router.push({name: "rider"});
                         }else{
                             //new guest
-                        }
+                        }*/
     },
     methods: {
         back(){
@@ -86,22 +88,48 @@ export default {
                     overlayClickClose: false,
                     text: '<div class=\'mt-2 text-small fg-white\'>Please, wait...</div>',
                 })
-                    var input = {'Name':this.Name, 'Surname':this.Surname, 'Email':this.mail};
-                    axios.post('/api/create-rider',input)
+                    var input = {'name':this.Name, 'surname':this.Surname, 'email':this.mail, 'password':this.pass};
+                    axios.post('/api/signup',input)
                     .then(res => {
                         
                         var options = {
                                 showTop: true,
                             }
                           if(res.data == 1){
-                            Metro.toast.create('You are ready!',
+
+        //login
+                  axios.post('/api/signin',input)
+                    .then(res => {
+                    var result = res.data.result;
+                    var options = {
+                                showTop: true,
+                            }
+                         if(result == 2){
+                            Metro.toast.create('Invalid credentials. Refresh and try again',
+                             null, 9000, 'yellow', options);
+                             Metro.activity.close(activity);
+                          }else{
+                           
+                            //start login 
+                               Metro.session.setItem('userToken',res.data.token);
+                               Metro.session.setItem('userId',res.data.id);
+                               Metro.session.setItem('userName',res.data.username);
+                               Metro.activity.close(activity);
+                               this.$router.push({name: "rider"});
+                          }
+                    })
+                    .catch(error =>{
+                        Metro.activity.close(activity);
+                      console.log('err',error)
+                    })
+                           /* Metro.toast.create('You are ready!',
                              null, 5000, 'success', options);
                              Metro.session.setItem('name',this.Name)
                              Metro.session.setItem('surname',this.Surname)
                              Metro.session.setItem('mail',this.mail)
                              Metro.session.setItem('level','rider')
                              Metro.activity.close(activity);
-                             this.$router.push({name: "rider"});
+                             this.$router.push({name: "rider"});*/
                           
                           }else{
                             Metro.activity.close(activity);

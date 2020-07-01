@@ -73147,8 +73147,8 @@ var install = VeeValidate$1.install;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_index_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_rider_checkIn_vue__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_rider_checkIn_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_rider_checkIn_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_rider_fullName_vue__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_rider_fullName_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_rider_fullName_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_auth_reg_vue__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_auth_reg_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_auth_reg_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_rider_rider_vue__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_rider_rider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_rider_rider_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_rider_success_vue__ = __webpack_require__(188);
@@ -73203,9 +73203,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
             //  auth: true
         }
     }, {
-        path: '/full-name',
-        name: 'fullName',
-        component: __WEBPACK_IMPORTED_MODULE_4__components_rider_fullName_vue___default.a,
+        path: '/signup',
+        name: 'reg',
+        component: __WEBPACK_IMPORTED_MODULE_4__components_auth_reg_vue___default.a,
         meta: {
             //  auth: true
         }
@@ -76493,404 +76493,9 @@ if (false) {
 }
 
 /***/ }),
-/* 182 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(183)
-/* template */
-var __vue_template__ = __webpack_require__(184)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/rider/fullName.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-44e9bff4", Component.options)
-  } else {
-    hotAPI.reload("data-v-44e9bff4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 183 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            Name: '',
-            Surname: '',
-            mail: ''
-        };
-    },
-    mounted: function mounted() {
-        var display = Metro.session.getItem('name');
-        if (display) {
-            //old guest, do nothing
-            this.$router.push({ name: "rider" });
-        } else {
-            //new guest
-        }
-    },
-
-    methods: {
-        back: function back() {
-            this.$router.go(-1);
-        },
-        ok: function ok() {
-            var _this = this;
-
-            //validate specific reg fields
-            this.$validator.validateAll().then(function () {
-                if (!_this.errors.any()) {
-                    var activity = Metro.activity.open({
-                        type: 'cycle',
-                        overlayClickClose: false,
-                        text: '<div class=\'mt-2 text-small fg-white\'>Please, wait...</div>'
-                    });
-                    var input = { 'Name': _this.Name, 'Surname': _this.Surname, 'Email': _this.mail };
-                    axios.post('/api/create-rider', input).then(function (res) {
-
-                        var options = {
-                            showTop: true
-                        };
-                        if (res.data == 1) {
-                            Metro.toast.create('You are ready!', null, 5000, 'success', options);
-                            Metro.session.setItem('name', _this.Name);
-                            Metro.session.setItem('surname', _this.Surname);
-                            Metro.session.setItem('mail', _this.mail);
-                            Metro.session.setItem('level', 'rider');
-                            Metro.activity.close(activity);
-                            _this.$router.push({ name: "rider" });
-                        } else {
-                            Metro.activity.close(activity);
-                            alert('An error coccured, please try again.');
-                        }
-                    }).catch(function (error) {
-                        Metro.activity.close(activity);
-                        console.log(error);
-                        var options = {
-                            showTop: true
-                        };
-                        Metro.toast.create('A temporary network error occured... Please try again', null, 5000, 'yellow', options);
-                    });
-                } else {} //if error
-                //error is auto shown, dont worry
-                //if error
-            }); //val
-        }
-    }
-});
-
-/***/ }),
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "centered slideUp" }, [
-        _c("h4", { staticClass: "text-center sub-font-fam" }, [
-          _vm._v("Enter Profile Info")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "cell flex-align-self-start" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "cell flex-align-self-center" }, [
-            _c("form", [
-              _c("div", { staticClass: "form-group" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.Name,
-                      expression: "Name"
-                    },
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: "required|max:25",
-                      expression: '"required|max:25"'
-                    }
-                  ],
-                  staticClass: "mt-2",
-                  attrs: {
-                    type: "text",
-                    placeholder: "First Name",
-                    name: "Name"
-                  },
-                  domProps: { value: _vm.Name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.Name = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.errors.has("Name"),
-                        expression: "errors.has('Name')"
-                      }
-                    ],
-                    staticClass: "fg-red shake"
-                  },
-                  [_vm._v(_vm._s(_vm.errors.first("Name")))]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.Surname,
-                      expression: "Surname"
-                    },
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: "required|max:25",
-                      expression: '"required|max:25"'
-                    }
-                  ],
-                  staticClass: "mt-2",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Last Name",
-                    name: "Surname"
-                  },
-                  domProps: { value: _vm.Surname },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.Surname = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.errors.has("Surname"),
-                        expression: "errors.has('Surname')"
-                      }
-                    ],
-                    staticClass: "fg-red shake"
-                  },
-                  [_vm._v(_vm._s(_vm.errors.first("Surname")))]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.mail,
-                      expression: "mail"
-                    },
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: "required|email|max:100",
-                      expression: '"required|email|max:100"'
-                    }
-                  ],
-                  staticClass: "mt-2",
-                  attrs: { type: "email", placeholder: "Email", name: "Email" },
-                  domProps: { value: _vm.mail },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.mail = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.errors.has("Email"),
-                        expression: "errors.has('Email')"
-                      }
-                    ],
-                    staticClass: "fg-red shake"
-                  },
-                  [_vm._v(_vm._s(_vm.errors.first("Email")))]
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-group text-center" },
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "button fg-white",
-                      attrs: { color: "green" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.ok()
-                        }
-                      }
-                    },
-                    [_vm._v("Continue")]
-                  )
-                ],
-                1
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "cell flex-align-self-end" })
-        ]),
-        _vm._v(" "),
-        _c("b", { staticClass: "bg-white" }, [
-          _vm._v("*This is a one time setup.")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("floating")
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-start" }, [
-      _c("div", { staticClass: "dark-shade" })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-44e9bff4", module.exports)
-  }
-}
-
-/***/ }),
+/* 182 */,
+/* 183 */,
+/* 184 */,
 /* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -106005,6 +105610,481 @@ webpackContext.id = 218;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(228)
+/* template */
+var __vue_template__ = __webpack_require__(229)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/auth/reg.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-16ad6644", Component.options)
+  } else {
+    hotAPI.reload("data-v-16ad6644", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 228 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            Name: '',
+            Surname: '',
+            mail: '',
+            pass: ''
+        };
+    },
+    mounted: function mounted() {
+        /* var display = Metro.session.getItem('name')
+                         if(display){
+                             //old guest, do nothing
+                             this.$router.push({name: "rider"});
+                         }else{
+                             //new guest
+                         }*/
+    },
+
+    methods: {
+        back: function back() {
+            this.$router.go(-1);
+        },
+        ok: function ok() {
+            var _this = this;
+
+            //validate specific reg fields
+            this.$validator.validateAll().then(function () {
+                if (!_this.errors.any()) {
+                    var activity = Metro.activity.open({
+                        type: 'cycle',
+                        overlayClickClose: false,
+                        text: '<div class=\'mt-2 text-small fg-white\'>Please, wait...</div>'
+                    });
+                    var input = { 'name': _this.Name, 'surname': _this.Surname, 'email': _this.mail, 'password': _this.pass };
+                    axios.post('/api/signup', input).then(function (res) {
+
+                        var options = {
+                            showTop: true
+                        };
+                        if (res.data == 1) {
+
+                            //login
+                            axios.post('/api/signin', input).then(function (res) {
+                                var result = res.data.result;
+                                var options = {
+                                    showTop: true
+                                };
+                                if (result == 2) {
+                                    Metro.toast.create('Invalid credentials. Refresh and try again', null, 9000, 'yellow', options);
+                                    Metro.activity.close(activity);
+                                } else {
+
+                                    //start login 
+                                    Metro.session.setItem('userToken', res.data.token);
+                                    Metro.session.setItem('userId', res.data.id);
+                                    Metro.session.setItem('userName', res.data.username);
+                                    Metro.activity.close(activity);
+                                    _this.$router.push({ name: "rider" });
+                                }
+                            }).catch(function (error) {
+                                Metro.activity.close(activity);
+                                console.log('err', error);
+                            });
+                            /* Metro.toast.create('You are ready!',
+                              null, 5000, 'success', options);
+                              Metro.session.setItem('name',this.Name)
+                              Metro.session.setItem('surname',this.Surname)
+                              Metro.session.setItem('mail',this.mail)
+                              Metro.session.setItem('level','rider')
+                              Metro.activity.close(activity);
+                              this.$router.push({name: "rider"});*/
+                        } else {
+                            Metro.activity.close(activity);
+                            alert('An error coccured, please try again.');
+                        }
+                    }).catch(function (error) {
+                        Metro.activity.close(activity);
+                        console.log(error);
+                        var options = {
+                            showTop: true
+                        };
+                        Metro.toast.create('A temporary network error occured... Please try again', null, 5000, 'yellow', options);
+                    });
+                } else {} //if error
+                //error is auto shown, dont worry
+                //if error
+            }); //val
+        }
+    }
+});
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "centered slideUp" }, [
+        _c("h4", { staticClass: "text-center sub-font-fam" }, [
+          _vm._v("Enter Profile Info")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "cell flex-align-self-start" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "cell flex-align-self-center" }, [
+            _c("form", [
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.Name,
+                      expression: "Name"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|max:25",
+                      expression: '"required|max:25"'
+                    }
+                  ],
+                  staticClass: "mt-2",
+                  attrs: {
+                    type: "text",
+                    placeholder: "First Name",
+                    name: "Name"
+                  },
+                  domProps: { value: _vm.Name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.Name = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("Name"),
+                        expression: "errors.has('Name')"
+                      }
+                    ],
+                    staticClass: "fg-red shake"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("Name")))]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.Surname,
+                      expression: "Surname"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|max:25",
+                      expression: '"required|max:25"'
+                    }
+                  ],
+                  staticClass: "mt-2",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Last Name",
+                    name: "Surname"
+                  },
+                  domProps: { value: _vm.Surname },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.Surname = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("Surname"),
+                        expression: "errors.has('Surname')"
+                      }
+                    ],
+                    staticClass: "fg-red shake"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("Surname")))]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.mail,
+                      expression: "mail"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|email|max:100",
+                      expression: '"required|email|max:100"'
+                    }
+                  ],
+                  staticClass: "mt-2",
+                  attrs: { type: "email", placeholder: "Email", name: "Email" },
+                  domProps: { value: _vm.mail },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.mail = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("Email"),
+                        expression: "errors.has('Email')"
+                      }
+                    ],
+                    staticClass: "fg-red shake"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("Email")))]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pass,
+                      expression: "pass"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required",
+                      expression: '"required"'
+                    }
+                  ],
+                  staticClass: "mt-2",
+                  attrs: {
+                    type: "password",
+                    placeholder: "Password",
+                    name: "Password"
+                  },
+                  domProps: { value: _vm.pass },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.pass = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("Password"),
+                        expression: "errors.has('Password')"
+                      }
+                    ],
+                    staticClass: "fg-red shake"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("Password")))]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group text-center" },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "button fg-white",
+                      attrs: { color: "green" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.ok()
+                        }
+                      }
+                    },
+                    [_vm._v("Continue")]
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "cell flex-align-self-end" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("floating")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-start" }, [
+      _c("div", { staticClass: "dark-shade" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-16ad6644", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -7,7 +7,7 @@ Vue.use(Router)
 import index from './components/index.vue'
 
 import checkIn from './components/rider/checkIn.vue'
-import fullName from './components/rider/fullName.vue'
+import reg from './components/auth/reg.vue'
 import rider from './components/rider/rider.vue'
 import success from './components/rider/success.vue'
 import timeline from './components/rider/timeline.vue'
@@ -39,9 +39,9 @@ export default new Router({
             }
         },
         {
-            path: '/full-name',
-            name: 'fullName',
-            component: fullName,
+            path: '/signup',
+            name: 'reg',
+            component: reg,
              meta:{
               //  auth: true
             }

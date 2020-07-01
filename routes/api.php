@@ -18,7 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::Post('/create-rider', 'riderController@createRider');
+Route::Post('/signup', 'authController@reg');
+Route::Post('/signin', 'authController@login');
+
 Route::Post('/check-in', 'riderController@checkIn');
 Route::Get('/logs/{surname}', 'riderController@logs');
 Route::Get('/load-more-log/{surname}/{count}', 'riderController@loadMoreLog');
