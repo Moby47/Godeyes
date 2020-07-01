@@ -75938,6 +75938,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -75971,71 +75982,96 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "bg-start" }),
-    _vm._v(" "),
-    _c(
-      "h1",
-      {
-        staticClass: "text-center slideUp mb-5",
-        staticStyle: { "font-family": '"Orbitron"' }
-      },
-      [
-        _vm._v("\n    W"),
-        _c("v-icon", [_vm._v("visibility")]),
-        _vm._v("tch D"),
-        _c("v-icon", [_vm._v("pets")]),
-        _vm._v("g")
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "centered slideUp mt-5" }, [
-      _c("div", { staticClass: "row text-center" }, [
-        _c("div", { staticClass: "cell order-1 mr-5" }, [
-          _c(
-            "button",
-            {
-              staticClass: "shortcut rounded primary ani-hover-horizontal",
-              staticStyle: { "background-color": "#3b6b63" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.rider()
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "bg-start" }),
+      _vm._v(" "),
+      _c(
+        "h1",
+        {
+          staticClass: "text-center slideUp mb-5",
+          staticStyle: { "font-family": '"Orbitron"' }
+        },
+        [
+          _vm._v("\n    W"),
+          _c("v-icon", [_vm._v("visibility")]),
+          _vm._v("tch D"),
+          _c("v-icon", [_vm._v("pets")]),
+          _vm._v("g")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "centered slideUp mt-5" }, [
+        _c("div", { staticClass: "row text-center" }, [
+          _c("div", { staticClass: "cell order-1 mr-5" }, [
+            _c(
+              "button",
+              {
+                staticClass: "shortcut rounded primary ani-hover-horizontal",
+                staticStyle: { "background-color": "#3b6b63" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.rider()
+                  }
                 }
-              }
-            },
-            [
-              _c("span", { staticClass: "caption" }, [_vm._v("Rider")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "mif-bus icon  ani-float" })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "cell order-2" }, [
-          _c(
-            "button",
-            {
-              staticClass: "shortcut rounded primary ani-hover-horizontal",
-              staticStyle: { "background-color": "#e08981" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.captain()
+              },
+              [
+                _c("span", { staticClass: "caption" }, [_vm._v("Rider")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mif-bus icon  ani-float" })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "cell order-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "shortcut rounded primary ani-hover-horizontal",
+                staticStyle: { "background-color": "#e08981" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.captain()
+                  }
                 }
-              }
-            },
-            [
-              _c("span", { staticClass: "caption" }, [_vm._v("Captain")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "mif-user-secret icon  ani-float" })
-            ]
-          )
+              },
+              [
+                _c("span", { staticClass: "caption" }, [_vm._v("Captain")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mif-user-secret icon  ani-float" })
+              ]
+            )
+          ])
         ])
-      ])
-    ])
-  ])
+      ]),
+      _vm._v(" "),
+      [
+        _c("v-footer", { staticClass: "foot-align" }, [
+          _c("div", { staticClass: "text-center ", attrs: { cols: "12" } }, [
+            _vm._v("\n      " + _vm._s(new Date().getFullYear()) + " — "),
+            _c("strong", [
+              _vm._v("Developed by\n          "),
+              _c(
+                "a",
+                {
+                  attrs: {
+                    target: "_blank",
+                    href: "https://henrymoby.website/"
+                  }
+                },
+                [_vm._v("Henry")]
+              )
+            ])
+          ])
+        ])
+      ]
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

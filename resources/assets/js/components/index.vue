@@ -33,6 +33,17 @@
 </div>
 
 
+<template>
+  <v-footer class='foot-align'>
+    <div
+      class="text-center "
+      cols="12"
+    >
+      {{ new Date().getFullYear() }} — <strong>Developed by
+          <a target='_blank' href='https://henrymoby.website/'>Henry</a></strong>
+    </div>
+  </v-footer>
+</template>
 
 </div>
 
