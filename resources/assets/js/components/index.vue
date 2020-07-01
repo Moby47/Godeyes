@@ -14,7 +14,7 @@
 <div class="cell order-1 mr-5">
     <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='rider()' 
     style="background-color: #3b6b63">
-        <span class="caption">Rider</span>
+        <span class="caption">Passenger</span>
         <span class="mif-bus icon  ani-float"></span>
     </button>
 </div>

@@ -31,7 +31,7 @@
                                     <div data-role="tile" style="background-color: #e08981" data-size="wide"
                                     @click.prevent="addRider()">
                                         <span class="mif-bus icon"></span>
-                                        <span class="branding-bar">Add Rider</span>
+                                        <span class="branding-bar">Add Passenger</span>
                                     </div>
                                    <!-- <div data-role="tile" data-size="small">
                                         <span class="mif-apple icon"></span>

@@ -13,7 +13,7 @@
     
     <div class='centered slideUp'>
     
-    <h4 class="text-center sub-font-fam">Enter Rider Info</h4>
+    <h4 class="text-center sub-font-fam">Enter Passenger Info</h4>
     
     
      <div class="row">

@@ -76019,7 +76019,7 @@ var render = function() {
                 }
               },
               [
-                _c("span", { staticClass: "caption" }, [_vm._v("Rider")]),
+                _c("span", { staticClass: "caption" }, [_vm._v("Passenger")]),
                 _vm._v(" "),
                 _c("span", { staticClass: "mif-bus icon  ani-float" })
               ]
@@ -78448,7 +78448,7 @@ var render = function() {
                       _c("span", { staticClass: "mif-bus icon" }),
                       _vm._v(" "),
                       _c("span", { staticClass: "branding-bar" }, [
-                        _vm._v("Add Rider")
+                        _vm._v("Add Passenger")
                       ])
                     ]
                   )
@@ -78613,7 +78613,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "centered slideUp" }, [
         _c("h4", { staticClass: "text-center sub-font-fam" }, [
-          _vm._v("Enter Rider Info")
+          _vm._v("Enter Passenger Info")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
