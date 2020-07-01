@@ -8,13 +8,11 @@
     <div class='dark-shade'></div>
 </div>
 
-<h1 class="text-center fg-green pulse" style='font-family: "Orbitron";'>Success!!</h1>
+<h1 class="text-center pulse" style='font-family: "Orbitron";'>Latest Check-In</h1>
 
 <div class='centered slideUp'>
 
-<h4 class="text-center fg-green sub-font-fam">25th</h4>
-
-<h4 class="text-center fg-green sub-font-fam">Evening check-In</h4>
+<h4 class="text-center sub-font-fam">25th ~ Evening</h4>
 
 
 </div>

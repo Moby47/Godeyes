@@ -77142,8 +77142,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -77212,19 +77210,15 @@ var staticRenderFns = [
       _c(
         "h1",
         {
-          staticClass: "text-center fg-green pulse",
+          staticClass: "text-center pulse",
           staticStyle: { "font-family": '"Orbitron"' }
         },
-        [_vm._v("Success!!")]
+        [_vm._v("Latest Check-In")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "centered slideUp" }, [
-        _c("h4", { staticClass: "text-center fg-green sub-font-fam" }, [
-          _vm._v("25th")
-        ]),
-        _vm._v(" "),
-        _c("h4", { staticClass: "text-center fg-green sub-font-fam" }, [
-          _vm._v("Evening check-In")
+        _c("h4", { staticClass: "text-center sub-font-fam" }, [
+          _vm._v("25th ~ Evening")
         ])
       ])
     ])
