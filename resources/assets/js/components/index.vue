@@ -23,7 +23,7 @@
 <div class="cell order-2">
         <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='captain()' 
         style="background-color: #e08981">
-            <span class="caption">Captain</span>
+            <span class="caption">Bus Captain</span>
             <span class="mif-user-secret icon  ani-float"></span>
         </button>
     </div>

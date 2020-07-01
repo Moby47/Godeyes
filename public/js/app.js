@@ -76062,7 +76062,7 @@ var render = function() {
                 }
               },
               [
-                _c("span", { staticClass: "caption" }, [_vm._v("Captain")]),
+                _c("span", { staticClass: "caption" }, [_vm._v("Bus Captain")]),
                 _vm._v(" "),
                 _c("span", { staticClass: "mif-user-secret icon  ani-float" })
               ]
