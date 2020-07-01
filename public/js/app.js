@@ -76211,6 +76211,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
+        var rider = Metro.session.getItem('level');
+        if (rider != 'rider') {
+            Metro.toast.create('Please enter your details', null, 5000, 'yellow', options);
+            this.$router.push({ name: "fullName" });
+        }
         this.getCaptains();
     },
 
@@ -77361,114 +77366,119 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      content: [],
-      empty: false,
-      pagination: [],
-      week: '-',
-      month: '-',
-      total: '-',
-      name: ''
-    };
-  },
-  mounted: function mounted() {
-    this.get();
-    this.getWeek();
-    this.getMonth();
-    this.getTotal();
-    this.name = Metro.session.getItem('name') + ' ' + Metro.session.getItem('surname');
-  },
-
-  methods: {
-    more: function more() {
-
-      alert("Feature Under Maintenance");
-    },
-    get: function get(page_url) {
-      var _this = this;
-
-      var activity = Metro.activity.open({
-        type: 'cycle',
-        overlayClickClose: false,
-        text: '<div class=\'mt-2 text-small fg-white\'>Loading trips...</div>'
-      });
-      var page_url = page_url || '/api/logs' + '/' + Metro.session.getItem('surname');
-      fetch(page_url).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.content = res.data;
-        _this.per_page = res.meta.per_page;
-        console.log(_this.content);
-        Metro.activity.close(activity);
-        //to determine if obj is empty 
-        console.log(res.data[0]);
-        if (res.data[0] == undefined) {
-          alert('No records yet');
-          _this.$router.push({ name: "checkIn" });
-        } else {
-          _this.empty = false;
-        }
-        //to determine if obj is empty
-        //to determine if obj is empty
-        _this.makePagination(res.meta, res.links);
-      }).catch(function (error) {
-        console.log(error);
-        //off loader
-
-        var options = {
-          showTop: true,
-          distance: 55
+    data: function data() {
+        return {
+            content: [],
+            empty: false,
+            pagination: [],
+            week: '-',
+            month: '-',
+            total: '-',
+            name: ''
         };
-        Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
-        Metro.activity.close(activity);
-      });
     },
-    makePagination: function makePagination(meta, links) {
-      var pagination = {
-        current_page: meta.current_page,
-        last_page: meta.last_page,
-        next_page_url: links.next,
-        prev_page_url: links.prev
-      };
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-      this.pagination = pagination;
+    mounted: function mounted() {
+        var rider = Metro.session.getItem('level');
+        if (rider != 'rider') {
+            Metro.toast.create('Please enter your details', null, 5000, 'yellow', options);
+            this.$router.push({ name: "fullName" });
+        }
+        this.get();
+        this.getWeek();
+        this.getMonth();
+        this.getTotal();
+        this.name = Metro.session.getItem('name') + ' ' + Metro.session.getItem('surname');
     },
-    getWeek: function getWeek() {
-      var _this2 = this;
 
-      fetch('/api/week/' + Metro.session.getItem('surname')).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this2.week = res;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    getMonth: function getMonth() {
-      var _this3 = this;
+    methods: {
+        more: function more() {
 
-      fetch('/api/month/' + Metro.session.getItem('surname')).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this3.month = res;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    getTotal: function getTotal() {
-      var _this4 = this;
+            alert("Feature Under Maintenance");
+        },
+        get: function get(page_url) {
+            var _this = this;
 
-      fetch('/api/total/' + Metro.session.getItem('surname')).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this4.total = res;
-      }).catch(function (error) {
-        console.log(error);
-      });
+            var activity = Metro.activity.open({
+                type: 'cycle',
+                overlayClickClose: false,
+                text: '<div class=\'mt-2 text-small fg-white\'>Loading trips...</div>'
+            });
+            var page_url = page_url || '/api/logs' + '/' + Metro.session.getItem('surname');
+            fetch(page_url).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this.content = res.data;
+                _this.per_page = res.meta.per_page;
+                console.log(_this.content);
+                Metro.activity.close(activity);
+                //to determine if obj is empty 
+                console.log(res.data[0]);
+                if (res.data[0] == undefined) {
+                    alert('No records yet');
+                    _this.$router.push({ name: "checkIn" });
+                } else {
+                    _this.empty = false;
+                }
+                //to determine if obj is empty
+                //to determine if obj is empty
+                _this.makePagination(res.meta, res.links);
+            }).catch(function (error) {
+                console.log(error);
+                //off loader
+
+                var options = {
+                    showTop: true,
+                    distance: 55
+                };
+                Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
+                Metro.activity.close(activity);
+            });
+        },
+        makePagination: function makePagination(meta, links) {
+            var pagination = {
+                current_page: meta.current_page,
+                last_page: meta.last_page,
+                next_page_url: links.next,
+                prev_page_url: links.prev
+            };
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            this.pagination = pagination;
+        },
+        getWeek: function getWeek() {
+            var _this2 = this;
+
+            fetch('/api/week/' + Metro.session.getItem('surname')).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this2.week = res;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getMonth: function getMonth() {
+            var _this3 = this;
+
+            fetch('/api/month/' + Metro.session.getItem('surname')).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this3.month = res;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getTotal: function getTotal() {
+            var _this4 = this;
+
+            fetch('/api/total/' + Metro.session.getItem('surname')).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this4.total = res;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
     }
-  }
 });
 
 /***/ }),

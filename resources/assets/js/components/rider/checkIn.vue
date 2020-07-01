@@ -73,6 +73,12 @@
             }
         },
         mounted(){
+            var rider = Metro.session.getItem('level') 
+            if(rider != 'rider'){
+                Metro.toast.create('Please enter your details',
+                         null, 5000, 'yellow', options);
+                this.$router.push({name: "fullName"});
+            }
           this.getCaptains()
         },
         methods: {
