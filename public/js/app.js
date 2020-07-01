@@ -76241,6 +76241,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         } else if (res.data.status == 47) {
                             Metro.activity.close(activity);
                             alert('Check-In is complete for this ' + res.data.time);
+                            _this2.$router.push({ name: "success" });
                         } else {
                             Metro.activity.close(activity);
                             alert('An error coccured, please try again.');
@@ -77509,7 +77510,12 @@ var render = function() {
               [
                 _c("v-card-text", [
                   _c("div", [
-                    _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
+                    _vm._v(
+                      _vm._s(_vm._f("formatDate")(con.created_at)) +
+                        " ~ " +
+                        _vm._s(con.time) +
+                        " trip"
+                    )
                   ]),
                   _vm._v(" "),
                   _c("small", [_vm._v("With Captain " + _vm._s(con.captain))])

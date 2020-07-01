@@ -40,8 +40,10 @@ class riderController extends Controller
         if(date("H") < 12){
         
             $time = "morning";
-            $check = checkin::where('surname','=', $request->input('Surname'))
-            ->where('created_at','>', '05:21:34')->select('id')->pluck('id')->first();
+        //   $today = \carbon\carbon::today();
+        $check = checkin::where('surname','=', $request->input('Surname'))
+            ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
+            ->select('custom_date')->pluck('custom_date')->first();
             if (empty($check))
             {
                 //save
@@ -49,17 +51,20 @@ class riderController extends Controller
              $save->name = $request->input('Name');
              $save->surname = $request->input('Surname');
              $save->captain = $request->input('Captain');
+             $save->custom_date = date("Y-m-d");
+             $save->time = $time;
              $save->save();
              return 1;
             }else{
-                return 47;
+               return ['status'=>47,'time'=>$time];
             }
 
-        }elseif(date("H") > 11 && date("H") < 18){
+        }elseif(date("H") > 11 && date("H") < 15){
 
             $time = "afternoon";
             $check = checkin::where('surname','=', $request->input('Surname'))
-            ->where('created_at','>', '11:21:34')->select('id')->pluck('id')->first();
+            ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
+            ->select('custom_date')->pluck('custom_date')->first();
             if (empty($check))
             {
                 //save
@@ -67,29 +72,34 @@ class riderController extends Controller
              $save->name = $request->input('Name');
              $save->surname = $request->input('Surname');
              $save->captain = $request->input('Captain');
+             $save->custom_date = date("Y-m-d");
+             $save->time = $time;
              $save->save();
              return 1;
             }else{
-                return 47;
+               return ['status'=>47,'time'=>$time];
             }
 
-        }elseif(date("H") > 17){
+        }elseif(date("H") > 16){
 
          $time = "evening";
          $check = checkin::where('surname','=', $request->input('Surname'))
-        ->where('created_at','>', '16:21:34')->select('id')->pluck('id')->first();
-        if (empty($check))
-        {
-            //save
-         $save = new checkin;
-         $save->name = $request->input('Name');
-         $save->surname = $request->input('Surname');
-         $save->captain = $request->input('Captain');
-         $save->save();
-         return 1;
-        }else{
+         ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
+         ->select('custom_date')->pluck('custom_date')->first();
+         if (empty($check))
+         {
+             //save
+          $save = new checkin;
+          $save->name = $request->input('Name');
+          $save->surname = $request->input('Surname');
+          $save->captain = $request->input('Captain');
+          $save->custom_date = date("Y-m-d");
+          $save->time = $time;
+          $save->save();
+          return 1;
+         }else{
             return ['status'=>47,'time'=>$time];
-        }
+         }
         }
         
          
@@ -98,7 +108,7 @@ class riderController extends Controller
 
     public function logs($surname)
     {
-        $log = checkin::where('surname','=', $surname)->select('id','created_at','captain')->paginate(3);
+        $log = checkin::where('surname','=', $surname)->select('id','created_at','captain','time')->paginate(3);
         return checkinres::collection($log);   
     }
 

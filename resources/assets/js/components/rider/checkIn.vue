@@ -141,6 +141,7 @@
                           }else if(res.data.status == 47){
                             Metro.activity.close(activity);
                             alert('Check-In is complete for this '+ res.data.time)
+                            this.$router.push({name: "success"});
                           }else{
                             Metro.activity.close(activity);
                                 alert('An error coccured, please try again.')

@@ -43,7 +43,7 @@
     v-for='con in content'  v-bind:key='con.id'
   >
     <v-card-text>
-      <div>{{con.created_at | formatDate}}</div>
+      <div>{{con.created_at | formatDate}} ~ {{con.time}} trip</div>
      <small>With Captain {{con.captain}}</small>
     </v-card-text>
   </v-card>
