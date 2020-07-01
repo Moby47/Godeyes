@@ -17,10 +17,10 @@
     
     
     <div class="social-box">
-        <div class="header  fg-white" style="background-color: #3b6b63">
+       <!-- <div class="header  fg-white" style="background-color: #3b6b63">
             <div class="title">{{name}}</div>
-        </div>
-        <ul class="skills">
+        </div>-->
+        <ul class="skills fg-white" style="background-color: #3b6b63">
             <li>
                 <div class="text-bold">{{week}}</div>
                 <div>This Week</div>
@@ -85,15 +85,15 @@
             }
         },
         mounted(){
-           var rider = Metro.session.getItem('level') 
+           /*var rider = Metro.session.getItem('level') 
             if(rider != 'rider'){
                 this.$router.push({name: "fullName"});
-            }
+            }*/
           this.get()
           this.getWeek()
           this.getMonth()
           this.getTotal()
-          this.name = Metro.session.getItem('name') + ' '+Metro.session.getItem('surname')
+         // this.name = Metro.session.getItem('name')
         },
         methods: {
             more(){
@@ -108,7 +108,7 @@
                     overlayClickClose: false,
                     text: '<div class=\'mt-2 text-small fg-white\'>Loading trips...</div>',
                 })
-                var   page_url = page_url || '/api/logs'+'/'+Metro.session.getItem('surname')
+                var   page_url = page_url || '/api/logs'+'/'+Metro.session.getItem('id')
                 fetch(page_url)
                 .then(res => res.json())
                 .then(res=>{
@@ -116,12 +116,15 @@
                    this.per_page = res.meta.per_page
                    console.log(this.content)
                    Metro.activity.close(activity);
+                   var options = {
+                                showTop: true,
+                            }
                   //to determine if obj is empty 
                           console.log(res.data[0]);
                           if(res.data[0] == undefined){
                           //  alert('No records yet')
                             Metro.toast.create('No records yet',
-                         null, 5000, 'yellow');
+                         null, 5000, 'yellow', options);
                            // this.$router.push({name: "checkIn"});
                           }else{
                               this.empty = false;

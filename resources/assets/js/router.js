@@ -6,8 +6,10 @@ Vue.use(Router)
 
 import index from './components/index.vue'
 
-import checkIn from './components/rider/checkIn.vue'
 import reg from './components/auth/reg.vue'
+import signin from './components/auth/signin.vue'
+
+import checkIn from './components/rider/checkIn.vue'
 import rider from './components/rider/rider.vue'
 import success from './components/rider/success.vue'
 import timeline from './components/rider/timeline.vue'
@@ -35,6 +37,14 @@ export default new Router({
             name: 'rider',
             component: rider,
              meta:{
+                auth: true
+            }
+        },
+        {
+            path: '/signin',
+            name: 'signin',
+            component: signin,
+             meta:{
               //  auth: true
             }
         },
@@ -51,7 +61,7 @@ export default new Router({
             name: 'checkIn',
             component: checkIn,
              meta:{
-              //  auth: true
+                auth: true
             }
         },
         {
@@ -59,7 +69,7 @@ export default new Router({
             name: 'success',
             component: success,
              meta:{
-              //  auth: true
+                auth: true
             }
         },
         {
@@ -67,7 +77,7 @@ export default new Router({
             name: 'timeline',
             component: timeline,
              meta:{
-              //  auth: true
+                auth: true
             }
         },
         {

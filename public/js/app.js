@@ -32669,29 +32669,33 @@ __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */].afterEach(function (to,
 
 /* ------------------------URL interceptor for auth ----------------*/
 
-/*
 //route middleware 
-router.beforeEach((to, from, next) => {
+__WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */].beforeEach(function (to, from, next) {
 
-       if(to.matched.some(record => record.meta.auth)){
-   
-if(localStorage.getItem('token')){
-   //continue
-   next()
-}else{
-   //redirect
-   next({path: '/'})
-} //inner if close
+    if (to.matched.some(function (record) {
+        return record.meta.auth;
+    })) {
 
-       }else{
+        if (Metro.session.getItem('token')) {
+            //continue
+            next();
+        } else {
+            //redirect
+            var options = {
+                showTop: true
+            };
+            Metro.toast.create('Please confirm your details', null, 5000, 'success', options);
+
+            next({ path: '/signin' });
+        } //inner if close
+    } else {
         //no auth required for this page
-           next()
-       } //main if close
-
-   } //func closure
-) //router close
+        next();
+    } //main if close
+} //func closure
+); //router close
 // route middleware 
-*/
+
 
 /* ------------------------URL interceptor ----------------*/
 
@@ -73145,31 +73149,35 @@ var install = VeeValidate$1.install;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_index_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_rider_checkIn_vue__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_rider_checkIn_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_rider_checkIn_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_auth_reg_vue__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_auth_reg_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_auth_reg_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_rider_rider_vue__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_rider_rider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_rider_rider_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_rider_success_vue__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_rider_success_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_rider_success_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_rider_timeline_vue__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_rider_timeline_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_rider_timeline_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_captain_daily_vue__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_captain_daily_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_captain_daily_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_captain_alltime_vue__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_captain_alltime_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_captain_alltime_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_board_vue__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_board_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_captain_board_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_captain_addRider_vue__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_captain_addRider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_captain_addRider_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_notfound_vue__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_notfound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_notfound_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_auth_reg_vue__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_auth_reg_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_auth_reg_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_auth_signin_vue__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_auth_signin_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_auth_signin_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_rider_checkIn_vue__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_rider_checkIn_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_rider_checkIn_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_rider_rider_vue__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_rider_rider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_rider_rider_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_rider_success_vue__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_rider_success_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_rider_success_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_captain_daily_vue__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_captain_daily_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_captain_daily_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_captain_board_vue__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_captain_board_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_captain_board_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_captain_addRider_vue__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_captain_addRider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_captain_addRider_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_notfound_vue__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_notfound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_notfound_vue__);
 
 
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+
+
 
 
 
@@ -73198,70 +73206,77 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     }, {
         path: '/rider',
         name: 'rider',
-        component: __WEBPACK_IMPORTED_MODULE_5__components_rider_rider_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_6__components_rider_rider_vue___default.a,
+        meta: {
+            auth: true
+        }
+    }, {
+        path: '/signin',
+        name: 'signin',
+        component: __WEBPACK_IMPORTED_MODULE_4__components_auth_signin_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '/signup',
         name: 'reg',
-        component: __WEBPACK_IMPORTED_MODULE_4__components_auth_reg_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_3__components_auth_reg_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '/check-in',
         name: 'checkIn',
-        component: __WEBPACK_IMPORTED_MODULE_3__components_rider_checkIn_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_5__components_rider_checkIn_vue___default.a,
         meta: {
-            //  auth: true
+            auth: true
         }
     }, {
         path: '/success',
         name: 'success',
-        component: __WEBPACK_IMPORTED_MODULE_6__components_rider_success_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_7__components_rider_success_vue___default.a,
         meta: {
-            //  auth: true
+            auth: true
         }
     }, {
         path: '/time-line',
         name: 'timeline',
-        component: __WEBPACK_IMPORTED_MODULE_7__components_rider_timeline_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue___default.a,
         meta: {
-            //  auth: true
+            auth: true
         }
     }, {
         path: '/daily-records',
         name: 'daily',
-        component: __WEBPACK_IMPORTED_MODULE_8__components_captain_daily_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_9__components_captain_daily_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '/alltime-records',
         name: 'alltime',
-        component: __WEBPACK_IMPORTED_MODULE_9__components_captain_alltime_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '/board',
         name: 'board',
-        component: __WEBPACK_IMPORTED_MODULE_10__components_captain_board_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_11__components_captain_board_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '/add-rider',
         name: 'addRider',
-        component: __WEBPACK_IMPORTED_MODULE_11__components_captain_addRider_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_12__components_captain_addRider_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '*',
         name: 'notfound',
-        component: __WEBPACK_IMPORTED_MODULE_12__components_notfound_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_13__components_notfound_vue___default.a,
         meta: {}
     }]
 }));
@@ -75970,14 +75985,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         rider: function rider() {
 
-            var display = Metro.session.getItem('name');
-            if (display) {
-                //old guest, do nothing
-                this.$router.push({ name: "rider" });
-            } else {
-                //new guest
-                this.$router.push({ name: "fullName" });
-            }
+            this.$router.push({ name: "rider" });
         },
         captain: function captain() {
             this.$router.push({ name: "board" });
@@ -76252,11 +76260,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var rider = Metro.session.getItem('level');
-        if (rider != 'rider') {
-            Metro.toast.create('Please enter your details', null, 5000, 'yellow');
-            this.$router.push({ name: "fullName" });
-        }
+        /*  var rider = Metro.session.getItem('level') 
+          if(rider != 'rider'){
+              Metro.toast.create('Please enter your details',
+                       null, 5000, 'yellow');
+              this.$router.push({name: "fullName"});
+          }*/
         this.getCaptains();
     },
 
@@ -76306,8 +76315,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         overlayClickClose: false,
                         text: '<div class=\'mt-2 text-small fg-white\'>Checking In...</div>'
                     });
-                    var input = { 'Name': Metro.session.getItem('name'),
-                        'Surname': Metro.session.getItem('surname'), 'Captain': _this2.captain };
+                    var input = { 'id': Metro.session.getItem('id'), 'Captain': _this2.captain };
                     axios.post('/api/check-in', input).then(function (res) {
 
                         var options = {
@@ -76456,7 +76464,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Check In")]
+                    [_vm._v("I'm in")]
                   )
                 ],
                 1
@@ -76599,14 +76607,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var rider = Metro.session.getItem('level');
-        if (rider != 'rider') {
-            var options = {
-                showTop: true
-            };
-            Metro.toast.create('Please Enter Profile Info', null, 5000, 'success', options);
-            this.$router.push({ name: "fullName" });
-        }
+        /*  var rider = Metro.session.getItem('level') 
+          if(rider != 'rider'){
+                var options = {
+                              showTop: true,
+                          }
+                           Metro.toast.create('Please Enter Profile Info',
+                       null, 5000, 'success', options);
+              this.$router.push({name: "fullName"});
+          }*/
         this.name = Metro.session.getItem('name');
     },
 
@@ -76812,14 +76821,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var options = {
-            showTop: true
-        };
-        var rider = Metro.session.getItem('level');
-        if (rider != 'rider') {
-            Metro.toast.create('Please Enter Profile Info', null, 5000, 'success', options);
-            this.$router.push({ name: "fullName" });
-        }
+        /*var options = {
+                               showTop: true,
+                           }
+        var rider = Metro.session.getItem('level') 
+           if(rider != 'rider'){
+                            Metro.toast.create('Please Enter Profile Info',
+                        null, 5000, 'success', options);
+               this.$router.push({name: "fullName"});
+           }*/
         this.get();
     },
 
@@ -76838,7 +76848,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 overlayClickClose: false,
                 text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>'
             });
-            var page_url = '/api/success-data' + '/' + Metro.session.getItem('surname');
+            var page_url = '/api/success-data' + '/' + Metro.session.getItem('id');
             fetch(page_url).then(function (res) {
                 return res.json();
             }).then(function (res) {
@@ -76896,7 +76906,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("h5", { staticClass: "text-center sub-font-fam" }, [
-              _vm._v("Bus Captain " + _vm._s(con.captain))
+              _vm._v("Bus Captain - " + _vm._s(con.captain))
             ])
           ])
         }),
@@ -77089,15 +77099,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var rider = Metro.session.getItem('level');
-        if (rider != 'rider') {
-            this.$router.push({ name: "fullName" });
-        }
+        /*var rider = Metro.session.getItem('level') 
+         if(rider != 'rider'){
+             this.$router.push({name: "fullName"});
+         }*/
         this.get();
         this.getWeek();
         this.getMonth();
         this.getTotal();
-        this.name = Metro.session.getItem('name') + ' ' + Metro.session.getItem('surname');
+        // this.name = Metro.session.getItem('name')
     },
 
     methods: {
@@ -77113,7 +77123,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 overlayClickClose: false,
                 text: '<div class=\'mt-2 text-small fg-white\'>Loading trips...</div>'
             });
-            var page_url = page_url || '/api/logs' + '/' + Metro.session.getItem('surname');
+            var page_url = page_url || '/api/logs' + '/' + Metro.session.getItem('id');
             fetch(page_url).then(function (res) {
                 return res.json();
             }).then(function (res) {
@@ -77121,11 +77131,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.per_page = res.meta.per_page;
                 console.log(_this.content);
                 Metro.activity.close(activity);
-                //to determine if obj is empty 
-                console.log(res.data[0]);
+                var options = {
+                    showTop: true
+                    //to determine if obj is empty 
+                };console.log(res.data[0]);
                 if (res.data[0] == undefined) {
                     //  alert('No records yet')
-                    Metro.toast.create('No records yet', null, 5000, 'yellow');
+                    Metro.toast.create('No records yet', null, 5000, 'yellow', options);
                     // this.$router.push({name: "checkIn"});
                 } else {
                     _this.empty = false;
@@ -77214,39 +77226,37 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "social-box" }, [
             _c(
-              "div",
+              "ul",
               {
-                staticClass: "header  fg-white",
+                staticClass: "skills fg-white",
                 staticStyle: { "background-color": "#3b6b63" }
               },
-              [_c("div", { staticClass: "title" }, [_vm._v(_vm._s(_vm.name))])]
-            ),
-            _vm._v(" "),
-            _c("ul", { staticClass: "skills" }, [
-              _c("li", [
-                _c("div", { staticClass: "text-bold" }, [
-                  _vm._v(_vm._s(_vm.week))
+              [
+                _c("li", [
+                  _c("div", { staticClass: "text-bold" }, [
+                    _vm._v(_vm._s(_vm.week))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("This Week")])
                 ]),
                 _vm._v(" "),
-                _c("div", [_vm._v("This Week")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("div", { staticClass: "text-bold" }, [
-                  _vm._v(_vm._s(_vm.month))
+                _c("li", [
+                  _c("div", { staticClass: "text-bold" }, [
+                    _vm._v(_vm._s(_vm.month))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("This Month")])
                 ]),
                 _vm._v(" "),
-                _c("div", [_vm._v("This Month")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("div", { staticClass: "text-bold" }, [
-                  _vm._v(_vm._s(_vm.total))
-                ]),
-                _vm._v(" "),
-                _c("div", [_vm._v("Total Trips")])
-              ])
-            ])
+                _c("li", [
+                  _c("div", { staticClass: "text-bold" }, [
+                    _vm._v(_vm._s(_vm.total))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("Total Trips")])
+                ])
+              ]
+            )
           ]),
           _vm._v(" "),
           _vm._l(_vm.content, function(con) {
@@ -105739,13 +105749,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        /* var display = Metro.session.getItem('name')
-                         if(display){
-                             //old guest, do nothing
-                             this.$router.push({name: "rider"});
-                         }else{
-                             //new guest
-                         }*/
+        var display = Metro.session.getItem('id');
+        if (display) {
+            //auth
+            this.$router.push({ name: "index" });
+        }
     },
 
     methods: {
@@ -105764,6 +105772,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         text: '<div class=\'mt-2 text-small fg-white\'>Please, wait...</div>'
                     });
                     var input = { 'name': _this.Name, 'surname': _this.Surname, 'email': _this.mail, 'password': _this.pass };
+
                     axios.post('/api/signup', input).then(function (res) {
 
                         var options = {
@@ -105783,9 +105792,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                 } else {
 
                                     //start login 
-                                    Metro.session.setItem('userToken', res.data.token);
-                                    Metro.session.setItem('userId', res.data.id);
-                                    Metro.session.setItem('userName', res.data.username);
+                                    Metro.session.setItem('token', res.data.token);
+                                    Metro.session.setItem('id', res.data.id);
+                                    Metro.session.setItem('name', res.data.name);
+
+                                    var options = {
+                                        showTop: true
+                                    };
+                                    Metro.toast.create('You are ready, continue...', null, 5000, 'success', options);
+
                                     Metro.activity.close(activity);
                                     _this.$router.push({ name: "rider" });
                                 }
@@ -106050,7 +106065,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Continue")]
+                    [_vm._v("Let's go")]
                   )
                 ],
                 1
@@ -106083,6 +106098,384 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-16ad6644", module.exports)
+  }
+}
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(231)
+/* template */
+var __vue_template__ = __webpack_require__(232)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/auth/signin.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-64f0e522", Component.options)
+  } else {
+    hotAPI.reload("data-v-64f0e522", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 231 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            Name: '',
+            pass: ''
+        };
+    },
+    mounted: function mounted() {
+        var display = Metro.session.getItem('id');
+        if (display) {
+            //auth
+            this.$router.push({ name: "index" });
+        }
+    },
+
+    methods: {
+        reg: function reg() {
+            var options = {
+                showTop: true
+            };
+            Metro.toast.create('LOL. ok, start here...', null, 5000, 'success', options);
+            this.$router.push({ name: "reg" });
+        },
+        ok: function ok() {
+            var _this = this;
+
+            //validate specific reg fields
+            this.$validator.validateAll().then(function () {
+                if (!_this.errors.any()) {
+                    var activity = Metro.activity.open({
+                        type: 'cycle',
+                        overlayClickClose: false,
+                        text: '<div class=\'mt-2 text-small fg-white\'>Checking...</div>'
+                    });
+                    //login
+                    var input = { 'name': _this.Name, 'password': _this.pass };
+
+                    axios.post('/api/signin', input).then(function (res) {
+                        var result = res.data.result;
+                        var options = {
+                            showTop: true
+                        };
+                        if (result == 2) {
+                            Metro.toast.create('Invalid credentials. Refresh and try again', null, 9000, 'yellow', options);
+                            Metro.activity.close(activity);
+                        } else {
+
+                            //start login 
+                            Metro.session.setItem('token', res.data.token);
+                            Metro.session.setItem('id', res.data.id);
+                            Metro.session.setItem('name', res.data.name);
+
+                            Metro.toast.create('You are you, please proceed...', null, 9000, 'success', options);
+
+                            Metro.activity.close(activity);
+                            _this.$router.push({ name: "index" });
+                        }
+                    }).catch(function (error) {
+                        Metro.activity.close(activity);
+                        console.log('err', error);
+                    });
+                } else {} //if error
+                //error is auto shown, dont worry
+                //if error
+            }); //val
+        }
+    }
+});
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "centered slideUp" }, [
+        _c("h4", { staticClass: "text-center sub-font-fam" }, [
+          _vm._v("Confirm Info")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "cell flex-align-self-start" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "cell flex-align-self-center" }, [
+            _c("form", [
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.Name,
+                      expression: "Name"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|max:25",
+                      expression: '"required|max:25"'
+                    }
+                  ],
+                  staticClass: "mt-2",
+                  attrs: {
+                    type: "text",
+                    placeholder: "First Name",
+                    name: "Name"
+                  },
+                  domProps: { value: _vm.Name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.Name = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("Name"),
+                        expression: "errors.has('Name')"
+                      }
+                    ],
+                    staticClass: "fg-red shake"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("Name")))]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pass,
+                      expression: "pass"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required",
+                      expression: '"required"'
+                    }
+                  ],
+                  staticClass: "mt-2",
+                  attrs: {
+                    type: "password",
+                    placeholder: "Password",
+                    name: "Password"
+                  },
+                  domProps: { value: _vm.pass },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.pass = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("Password"),
+                        expression: "errors.has('Password')"
+                      }
+                    ],
+                    staticClass: "fg-red shake"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("Password")))]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group text-center" },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "button fg-white",
+                      attrs: { color: "green" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.ok()
+                        }
+                      }
+                    },
+                    [_vm._v("I'm me")]
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "cell flex-align-self-end" })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "text-center shift", attrs: { cols: "12" } },
+          [
+            _c(
+              "v-btn",
+              {
+                staticClass: "button",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.reg()
+                  }
+                }
+              },
+              [_vm._v("It's my first time")]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("floating")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-start" }, [
+      _c("div", { staticClass: "dark-shade" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-64f0e522", module.exports)
   }
 }
 

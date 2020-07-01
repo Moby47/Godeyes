@@ -50,18 +50,24 @@ router.beforeResolve((to, from, next) => {
 
 /* ------------------------URL interceptor for auth ----------------*/
 
- /*
+ 
 //route middleware 
 router.beforeEach((to, from, next) => {
 
         if(to.matched.some(record => record.meta.auth)){
     
-if(localStorage.getItem('token')){
+if(Metro.session.getItem('token')){
     //continue
     next()
 }else{
     //redirect
-    next({path: '/'})
+    var options = {
+      showTop: true,
+  }
+   Metro.toast.create('Please confirm your details',
+null, 5000, 'success', options);
+
+    next({path: '/signin'})
 } //inner if close
 
         }else{
@@ -72,7 +78,7 @@ if(localStorage.getItem('token')){
     } //func closure
 ) //router close
 // route middleware 
- */
+ 
 
  /* ------------------------URL interceptor ----------------*/
 

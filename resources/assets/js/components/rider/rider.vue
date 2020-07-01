@@ -49,7 +49,7 @@
             }
         },
         mounted(){
-            var rider = Metro.session.getItem('level') 
+          /*  var rider = Metro.session.getItem('level') 
             if(rider != 'rider'){
                   var options = {
                                 showTop: true,
@@ -57,8 +57,9 @@
                              Metro.toast.create('Please Enter Profile Info',
                          null, 5000, 'success', options);
                 this.$router.push({name: "fullName"});
-            }
+            }*/
          this.name = Metro.session.getItem('name')
+         
         },
         methods: {
             checkin(){

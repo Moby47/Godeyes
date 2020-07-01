@@ -22,12 +22,12 @@ Route::Post('/signup', 'authController@reg');
 Route::Post('/signin', 'authController@login');
 
 Route::Post('/check-in', 'riderController@checkIn');
-Route::Get('/logs/{surname}', 'riderController@logs');
-Route::Get('/load-more-log/{surname}/{count}', 'riderController@loadMoreLog');
-Route::Get('/week/{surname}', 'riderController@week');
-Route::Get('/month/{surname}', 'riderController@month');
-Route::Get('/total/{surname}', 'riderController@total');
-Route::Get('/success-data/{surname}', 'riderController@success');
+Route::Get('/logs/{id}', 'riderController@logs');
+//Route::Get('/load-more-log/{id}/{count}', 'riderController@loadMoreLog');
+Route::Get('/week/{id}', 'riderController@week');
+Route::Get('/month/{id}', 'riderController@month');
+Route::Get('/total/{id}', 'riderController@total');
+Route::Get('/success-data/{id}', 'riderController@success');
 
 
 Route::Post('/add-captain', 'captainController@addCaptain');

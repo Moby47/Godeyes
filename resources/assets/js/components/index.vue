@@ -73,16 +73,9 @@ export default {
     },
     methods: {
         rider(){
-          
-     var display = Metro.session.getItem('name')
-                        if(display){
-                            //old guest, do nothing
-                            this.$router.push({name: "rider"});
-                        }else{
-                            //new guest
-                         this.$router.push({name: "fullName"});
+         
+        this.$router.push({name: "rider"});
                        
-                        }
                 
         },
         captain(){

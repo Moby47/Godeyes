@@ -33,7 +33,7 @@
             </div>
            
             <div class="form-group text-center">
-                <v-btn class="button fg-white" color="green" @click.prevent='ok()'>Check In</v-btn>
+                <v-btn class="button fg-white" color="green" @click.prevent='ok()'>I'm in</v-btn>
             </div>
         </form>
     </div>
@@ -73,12 +73,12 @@
             }
         },
         mounted(){
-            var rider = Metro.session.getItem('level') 
+          /*  var rider = Metro.session.getItem('level') 
             if(rider != 'rider'){
                 Metro.toast.create('Please enter your details',
                          null, 5000, 'yellow');
                 this.$router.push({name: "fullName"});
-            }
+            }*/
           this.getCaptains()
         },
         methods: {
@@ -129,8 +129,7 @@
                     overlayClickClose: false,
                     text: '<div class=\'mt-2 text-small fg-white\'>Checking In...</div>',
                 })
-                    var input = {'Name':Metro.session.getItem('name'), 
-                    'Surname':Metro.session.getItem('surname'), 'Captain':this.captain};
+                    var input = {'id':Metro.session.getItem('id'), 'Captain':this.captain};
                     axios.post('/api/check-in',input)
                     .then(res => {
                         

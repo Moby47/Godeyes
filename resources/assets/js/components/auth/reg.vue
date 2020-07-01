@@ -33,7 +33,7 @@
         </div>
        
         <div class="form-group text-center">
-            <v-btn class="button fg-white" color="green"  @click.prevent='ok()'>Continue</v-btn>
+            <v-btn class="button fg-white" color="green"  @click.prevent='ok()'>Let's go</v-btn>
         </div>
         
     </form>
@@ -66,13 +66,11 @@ export default {
         }
     },
     mounted(){
-       /* var display = Metro.session.getItem('name')
+        var display = Metro.session.getItem('id')
                         if(display){
-                            //old guest, do nothing
-                            this.$router.push({name: "rider"});
-                        }else{
-                            //new guest
-                        }*/
+                            //auth
+                            this.$router.push({name: "index"});
+                        }
     },
     methods: {
         back(){
@@ -89,6 +87,7 @@ export default {
                     text: '<div class=\'mt-2 text-small fg-white\'>Please, wait...</div>',
                 })
                     var input = {'name':this.Name, 'surname':this.Surname, 'email':this.mail, 'password':this.pass};
+                    
                     axios.post('/api/signup',input)
                     .then(res => {
                         
@@ -111,9 +110,16 @@ export default {
                           }else{
                            
                             //start login 
-                               Metro.session.setItem('userToken',res.data.token);
-                               Metro.session.setItem('userId',res.data.id);
-                               Metro.session.setItem('userName',res.data.username);
+                               Metro.session.setItem('token',res.data.token);
+                               Metro.session.setItem('id',res.data.id);
+                               Metro.session.setItem('name',res.data.name);
+
+                               var options = {
+                                showTop: true,
+                            }
+                             Metro.toast.create('You are ready, continue...',
+                         null, 5000, 'success', options);
+
                                Metro.activity.close(activity);
                                this.$router.push({name: "rider"});
                           }

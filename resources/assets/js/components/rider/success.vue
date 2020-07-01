@@ -15,7 +15,7 @@
 <span   v-for='con in content'  v-bind:key='con.id'>
 <h5 class="text-center sub-font-fam">{{con.created_at | formatDate}} </h5>
 <h5 class="text-center sub-font-fam">{{con.time}}</h5>
-<h5 class="text-center sub-font-fam">Bus Captain {{con.captain}}</h5>
+<h5 class="text-center sub-font-fam">Bus Captain - {{con.captain}}</h5>
 </span>
 
 </div>
@@ -53,7 +53,7 @@ export default {
         }
     },
     mounted(){
-         var options = {
+         /*var options = {
                                 showTop: true,
                             }
          var rider = Metro.session.getItem('level') 
@@ -61,7 +61,7 @@ export default {
                              Metro.toast.create('Please Enter Profile Info',
                          null, 5000, 'success', options);
                 this.$router.push({name: "fullName"});
-            }
+            }*/
       this.get()
     },
     methods: {
@@ -78,7 +78,7 @@ export default {
                     overlayClickClose: false,
                     text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>',
                 })
-                var   page_url = '/api/success-data'+'/'+Metro.session.getItem('surname')
+                var   page_url = '/api/success-data'+'/'+Metro.session.getItem('id')
                 fetch(page_url)
                 .then(res => res.json())
                 .then(res=>{
