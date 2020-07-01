@@ -13,7 +13,7 @@
     
     <div class='centered slideUp'>
     
-    <h4 class="text-center sub-font-fam">Select Bus Captain</h4>
+    <h4 class="text-center sub-font-fam">Select Bus Captain / Route</h4>
     
     
     <div class="row">
@@ -27,7 +27,7 @@
                       v-model='captain' v-validate='"required"'
  >
      <option  :value='con.name + " "+ con.surname'
-      v-for='con in content'  v-bind:key='con.id'>{{con.name}} {{con.surname}}</option>
+      v-for='con in content'  v-bind:key='con.id'>{{con.name}} {{con.surname}} - {{con.route}}</option>
                         </select>
               <p class='fg-red shake' v-show="errors.has('Captain')">{{ errors.first('Captain') }}</p>
             </div>
@@ -76,7 +76,7 @@
             var rider = Metro.session.getItem('level') 
             if(rider != 'rider'){
                 Metro.toast.create('Please enter your details',
-                         null, 5000, 'yellow', options);
+                         null, 5000, 'yellow');
                 this.$router.push({name: "fullName"});
             }
           this.getCaptains()
@@ -112,12 +112,9 @@
                 .catch(error =>{
                   console.log(error)
                     //off loader
-                    var options = {
-                                showTop: true,
-                                distance: 55
-                            }
+                    
                          Metro.toast.create('A temporary network error occured... Please reload page',
-                         null, 5000, 'yellow', options);
+                         null, 5000, 'yellow');
                          Metro.activity.close(activity);
                     })
                 
@@ -139,7 +136,6 @@
                         
                         var options = {
                                 showTop: true,
-                                distance: 55
                             }
                           if(res.data == 1){
                              Metro.activity.close(activity);
@@ -148,6 +144,9 @@
                             Metro.activity.close(activity);
                             alert('Check-In is complete for this '+ res.data.time)
                             this.$router.push({name: "success"});
+                         }else if(res.data.status == 48){
+                             Metro.activity.close(activity);
+                             alert('Check-In is unavailable in the '+ res.data.time)
                           }else{
                             Metro.activity.close(activity);
                                 alert('An error coccured, please try again.')
@@ -158,7 +157,6 @@
                       console.log(error)
                       var options = {
                                 showTop: true,
-                                distance: 55
                             }
                          Metro.toast.create('A temporary network error occured... Please try again',
                          null, 5000, 'yellow', options);

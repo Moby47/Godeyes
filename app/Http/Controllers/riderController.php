@@ -59,10 +59,10 @@ class riderController extends Controller
                return ['status'=>47,'time'=>$time];
             }
 
-        }elseif(date("H") > 11 && date("H") < 15){
+        }elseif(date("H") > 11 && date("H") < 16){
 
             $time = "afternoon";
-            $check = checkin::where('surname','=', $request->input('Surname'))
+           /* $check = checkin::where('surname','=', $request->input('Surname'))
             ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
             ->select('custom_date')->pluck('custom_date')->first();
             if (empty($check))
@@ -76,11 +76,11 @@ class riderController extends Controller
              $save->time = $time;
              $save->save();
              return 1;
-            }else{
-               return ['status'=>47,'time'=>$time];
-            }
+            }else{*/
+               return ['status'=>48,'time'=>$time];
+           // }
 
-        }elseif(date("H") > 16){
+        }elseif(date("H") > 17){
 
          $time = "evening";
          $check = checkin::where('surname','=', $request->input('Surname'))
@@ -132,6 +132,14 @@ class riderController extends Controller
     public function total($surname)
     {
         return $data = checkin::where('surname','=',$surname)->pluck('surname')->count();
+    }
+
+
+    public function success($surname)
+    {
+        $res = checkin::orderby('id','desc')->where('surname','=', $surname)
+        ->select('id','time','captain','created_at')->get()->take(1);
+        return checkinres::collection($res);   
     }
  
 }

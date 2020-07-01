@@ -12,7 +12,7 @@ class captainController extends Controller
 {
     public function getCaptains(Request $request)
     {
-        $res = captain::select('name','surname','id')->get();
+        $res = captain::select('name','surname','id','route')->get();
         return capres::collection($res);   
     }
 

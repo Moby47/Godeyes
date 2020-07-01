@@ -17,6 +17,7 @@ class CreateCaptainsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('surname');
+            $table->string('route');
             $table->timestamps();
         });
     }

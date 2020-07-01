@@ -87,8 +87,6 @@
         mounted(){
            var rider = Metro.session.getItem('level') 
             if(rider != 'rider'){
-               Metro.toast.create('Please enter your details',
-                         null, 5000, 'yellow', options);
                 this.$router.push({name: "fullName"});
             }
           this.get()
@@ -121,8 +119,10 @@
                   //to determine if obj is empty 
                           console.log(res.data[0]);
                           if(res.data[0] == undefined){
-                            alert('No records yet')
-                            this.$router.push({name: "checkIn"});
+                          //  alert('No records yet')
+                            Metro.toast.create('No records yet',
+                         null, 5000, 'yellow');
+                           // this.$router.push({name: "checkIn"});
                           }else{
                               this.empty = false;
                           }
@@ -137,7 +137,6 @@
                  
                     var options = {
                                 showTop: true,
-                                distance: 55
                             }
                          Metro.toast.create('A temporary network error occured... Please reload page',
                          null, 5000, 'yellow', options);

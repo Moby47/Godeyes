@@ -18,6 +18,8 @@ class CreateCheckinsTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('captain');
+            $table->string('time');
+            $table->string('custom_date');
             $table->timestamps();
         });
     }

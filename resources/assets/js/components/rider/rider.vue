@@ -51,7 +51,12 @@
         mounted(){
             var rider = Metro.session.getItem('level') 
             if(rider != 'rider'){
-                this.$router.push({name: "board"});
+                  var options = {
+                                showTop: true,
+                            }
+                             Metro.toast.create('Please Enter Profile Info',
+                         null, 5000, 'success', options);
+                this.$router.push({name: "fullName"});
             }
          this.name = Metro.session.getItem('name')
         },

@@ -22,7 +22,7 @@
         <form>
         <div class="form-group">
            
-            <input type="text" placeholder="First Nme" name='Name' v-model='Name' class='mt-2' v-validate='"required|max:25"'/>
+            <input type="text" placeholder="First Name" name='Name' v-model='Name' class='mt-2' v-validate='"required|max:25"'/>
             <p class='fg-red shake' v-show="errors.has('Name')">{{ errors.first('Name') }}</p>
             <input type="text" placeholder="Last Name" name='Surname' v-model='Surname' class='mt-2' v-validate='"required|max:25"'/>
             <p class='fg-red shake' v-show="errors.has('Surname')">{{ errors.first('Surname') }}</p>
@@ -92,7 +92,6 @@ export default {
                         
                         var options = {
                                 showTop: true,
-                                distance: 55
                             }
                           if(res.data == 1){
                             Metro.toast.create('You are ready!',
@@ -114,7 +113,6 @@ export default {
                       console.log(error)
                       var options = {
                                 showTop: true,
-                                distance: 55
                             }
                          Metro.toast.create('A temporary network error occured... Please try again',
                          null, 5000, 'yellow', options);

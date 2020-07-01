@@ -75949,6 +75949,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -75970,6 +75981,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         captain: function captain() {
             this.$router.push({ name: "board" });
+        },
+        last: function last() {
+            this.$router.push({ name: "success" });
         }
     }
 });
@@ -76049,9 +76063,36 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      [
-        _c("v-footer", { staticClass: "foot-align" }, [
-          _c("div", { staticClass: "text-center ", attrs: { cols: "12" } }, [
+      _c(
+        "div",
+        { staticClass: "text-center shift", attrs: { cols: "12" } },
+        [
+          _c(
+            "v-btn",
+            {
+              staticClass: "button",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.last()
+                }
+              }
+            },
+            [_vm._v("My Last Check-In")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-footer", { staticClass: "foot-align text-center" }, [
+        _c(
+          "div",
+          {
+            staticClass: "text-center",
+            staticStyle: { "text-align": "center", margin: "auto" },
+            attrs: { cols: "12" }
+          },
+          [
             _vm._v("\n      " + _vm._s(new Date().getFullYear()) + " — "),
             _c("strong", [
               _vm._v("Developed by\n          "),
@@ -76066,11 +76107,11 @@ var render = function() {
                 [_vm._v("Henry")]
               )
             ])
-          ])
-        ])
-      ]
+          ]
+        )
+      ])
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -76213,7 +76254,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var rider = Metro.session.getItem('level');
         if (rider != 'rider') {
-            Metro.toast.create('Please enter your details', null, 5000, 'yellow', options);
+            Metro.toast.create('Please enter your details', null, 5000, 'yellow');
             this.$router.push({ name: "fullName" });
         }
         this.getCaptains();
@@ -76249,11 +76290,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
                 //off loader
-                var options = {
-                    showTop: true,
-                    distance: 55
-                };
-                Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
+
+                Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow');
                 Metro.activity.close(activity);
             });
         },
@@ -76273,8 +76311,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     axios.post('/api/check-in', input).then(function (res) {
 
                         var options = {
-                            showTop: true,
-                            distance: 55
+                            showTop: true
                         };
                         if (res.data == 1) {
                             Metro.activity.close(activity);
@@ -76283,6 +76320,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             Metro.activity.close(activity);
                             alert('Check-In is complete for this ' + res.data.time);
                             _this2.$router.push({ name: "success" });
+                        } else if (res.data.status == 48) {
+                            Metro.activity.close(activity);
+                            alert('Check-In is unavailable in the ' + res.data.time);
                         } else {
                             Metro.activity.close(activity);
                             alert('An error coccured, please try again.');
@@ -76291,8 +76331,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         Metro.activity.close(activity);
                         console.log(error);
                         var options = {
-                            showTop: true,
-                            distance: 55
+                            showTop: true
                         };
                         Metro.toast.create('A temporary network error occured... Please try again', null, 5000, 'yellow', options);
                     });
@@ -76319,7 +76358,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "centered slideUp" }, [
         _c("h4", { staticClass: "text-center sub-font-fam" }, [
-          _vm._v("Select Bus Captain")
+          _vm._v("Select Bus Captain / Route")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -76370,7 +76409,15 @@ var render = function() {
                         key: con.id,
                         domProps: { value: con.name + " " + con.surname }
                       },
-                      [_vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))]
+                      [
+                        _vm._v(
+                          _vm._s(con.name) +
+                            " " +
+                            _vm._s(con.surname) +
+                            " - " +
+                            _vm._s(con.route)
+                        )
+                      ]
                     )
                   }),
                   0
@@ -76592,8 +76639,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     axios.post('/api/create-rider', input).then(function (res) {
 
                         var options = {
-                            showTop: true,
-                            distance: 55
+                            showTop: true
                         };
                         if (res.data == 1) {
                             Metro.toast.create('You are ready!', null, 5000, 'success', options);
@@ -76611,8 +76657,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         Metro.activity.close(activity);
                         console.log(error);
                         var options = {
-                            showTop: true,
-                            distance: 55
+                            showTop: true
                         };
                         Metro.toast.create('A temporary network error occured... Please try again', null, 5000, 'yellow', options);
                     });
@@ -76666,7 +76711,7 @@ var render = function() {
                   staticClass: "mt-2",
                   attrs: {
                     type: "text",
-                    placeholder: "First Nme",
+                    placeholder: "First Name",
                     name: "Name"
                   },
                   domProps: { value: _vm.Name },
@@ -76951,7 +76996,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var rider = Metro.session.getItem('level');
         if (rider != 'rider') {
-            this.$router.push({ name: "board" });
+            var options = {
+                showTop: true
+            };
+            Metro.toast.create('Please Enter Profile Info', null, 5000, 'success', options);
+            this.$router.push({ name: "fullName" });
         }
         this.name = Metro.session.getItem('name');
     },
@@ -77147,12 +77196,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            content: []
+        };
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        var options = {
+            showTop: true
+        };
+        var rider = Metro.session.getItem('level');
+        if (rider != 'rider') {
+            Metro.toast.create('Please Enter Profile Info', null, 5000, 'success', options);
+            this.$router.push({ name: "fullName" });
+        }
+        this.get();
+    },
 
     methods: {
         exit: function exit() {
@@ -77160,6 +77224,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         home: function home() {
             this.$router.push({ name: "index" });
+        },
+        get: function get() {
+            var _this = this;
+
+            var activity = Metro.activity.open({
+                type: 'cycle',
+                overlayClickClose: false,
+                text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>'
+            });
+            var page_url = '/api/success-data' + '/' + Metro.session.getItem('surname');
+            fetch(page_url).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this.content = res.data;
+
+                Metro.activity.close(activity);
+            }).catch(function (error) {
+                console.log(error);
+                //off loader
+                var options = {
+                    showTop: true
+                };
+                Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
+                Metro.activity.close(activity);
+            });
         }
     }
 
@@ -77174,7 +77263,41 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("div", { staticClass: "bg-col mt-4" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "h3",
+        {
+          staticClass: "text-center pulse",
+          staticStyle: { "font-family": '"Orbitron"' }
+        },
+        [_vm._v("Latest Check-In")]
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "centered slideUp" },
+        _vm._l(_vm.content, function(con) {
+          return _c("span", { key: con.id }, [
+            _c("h5", { staticClass: "text-center sub-font-fam" }, [
+              _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)) + " ")
+            ]),
+            _vm._v(" "),
+            _c("h5", { staticClass: "text-center sub-font-fam" }, [
+              _vm._v(_vm._s(con.time))
+            ]),
+            _vm._v(" "),
+            _c("h5", { staticClass: "text-center sub-font-fam" }, [
+              _vm._v("Bus Captain " + _vm._s(con.captain))
+            ])
+          ])
+        }),
+        0
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "centered slideUp mt-5" }, [
       _c("div", { staticClass: "row text-center" }, [
@@ -77207,25 +77330,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-col mt-4" }, [
-      _c("div", { staticClass: "bg-start" }, [
-        _c("div", { staticClass: "dark-shade" })
-      ]),
-      _vm._v(" "),
-      _c(
-        "h1",
-        {
-          staticClass: "text-center pulse",
-          staticStyle: { "font-family": '"Orbitron"' }
-        },
-        [_vm._v("Latest Check-In")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "centered slideUp" }, [
-        _c("h4", { staticClass: "text-center sub-font-fam" }, [
-          _vm._v("25th ~ Evening")
-        ])
-      ])
+    return _c("div", { staticClass: "bg-start" }, [
+      _c("div", { staticClass: "dark-shade" })
     ])
   }
 ]
@@ -77380,7 +77486,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var rider = Metro.session.getItem('level');
         if (rider != 'rider') {
-            Metro.toast.create('Please enter your details', null, 5000, 'yellow', options);
             this.$router.push({ name: "fullName" });
         }
         this.get();
@@ -77414,8 +77519,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //to determine if obj is empty 
                 console.log(res.data[0]);
                 if (res.data[0] == undefined) {
-                    alert('No records yet');
-                    _this.$router.push({ name: "checkIn" });
+                    //  alert('No records yet')
+                    Metro.toast.create('No records yet', null, 5000, 'yellow');
+                    // this.$router.push({name: "checkIn"});
                 } else {
                     _this.empty = false;
                 }
@@ -77427,8 +77533,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //off loader
 
                 var options = {
-                    showTop: true,
-                    distance: 55
+                    showTop: true
                 };
                 Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
                 Metro.activity.close(activity);

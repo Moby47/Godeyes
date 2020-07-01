@@ -33,17 +33,28 @@
 </div>
 
 
-<template>
-  <v-footer class='foot-align'>
+  
     <div
-      class="text-center "
+      class="text-center shift"
       cols="12"
+    >
+    <v-btn class="button"  @click.prevent='last()'>My Last Check-In</v-btn>
+    </div>
+
+
+
+
+  <v-footer class='foot-align text-center'>
+    <div
+      class="text-center"
+      cols="12"
+      style="text-align: center; margin: auto;"
     >
       {{ new Date().getFullYear() }} — <strong>Developed by
           <a target='_blank' href='https://henrymoby.website/'>Henry</a></strong>
     </div>
   </v-footer>
-</template>
+
 
 </div>
 
@@ -77,7 +88,9 @@ export default {
         captain(){
             this.$router.push({name: "board"});
         },
-    
+    last(){
+            this.$router.push({name: "success"});
+        },
         
     },
 }
