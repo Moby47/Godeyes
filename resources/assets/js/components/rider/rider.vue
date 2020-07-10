@@ -84,7 +84,7 @@
                                 var options = {
                                 showTop: true,
                             }
-                         Metro.toast.create('This page is for passengers only!',
+                         Metro.toast.create('That page is for passengers only!',
                          null, 5000, 'yellow', options);
                                 this.$router.push({name: "index"});
                             }

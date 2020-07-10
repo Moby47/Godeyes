@@ -77496,7 +77496,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var options = {
                 showTop: true
             };
-            Metro.toast.create('This page is for passengers only!', null, 5000, 'yellow', options);
+            Metro.toast.create('That page is for passengers only!', null, 5000, 'yellow', options);
             this.$router.push({ name: "index" });
         }
 
@@ -78499,7 +78499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var options = {
                 showTop: true
             };
-            Metro.toast.create('This page is for bus captains only!', null, 5000, 'yellow', options);
+            Metro.toast.create('That page is for bus captains only!', null, 5000, 'yellow', options);
             this.$router.push({ name: "index" });
         }
 
@@ -78508,18 +78508,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        go: function go() {
-            console.log(this.to, this.from);
-        },
-        get: function get(page_url) {
+        go: function go(page_url) {
             var _this = this;
+
+            if (this.to == '' || this.from == '') {
+                var options = {
+                    showTop: true
+                };
+                Metro.toast.create('Please select dates', null, 5000, 'yellow', options);
+                return;
+            }
 
             var activity = Metro.activity.open({
                 type: 'cycle',
                 overlayClickClose: false,
                 text: '<div class=\'mt-2 text-small fg-white\'>Loading data...</div>'
             });
-            var page_url = page_url || '/api/all-logs'; //+'/'+Metro.session.getItem('id')
+            var page_url = page_url || '/api/all-logs-filtered' + '/' + this.from + '/' + this.to;
             fetch(page_url).then(function (res) {
                 return res.json();
             }).then(function (res) {
@@ -78531,13 +78536,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     //to determine if obj is empty 
                 };console.log(res.data[0]);
                 if (res.data[0] == undefined) {
-                    Metro.toast.create('No records yet', null, 5000, 'yellow', options);
+                    Metro.toast.create('No records found', null, 5000, 'yellow', options);
                 } else {
                     _this.empty = false;
                 }
                 //to determine if obj is empty
 
                 _this.makePagination(res.meta, res.links);
+            }).catch(function (error) {
+                console.log(error);
+                //off loader
+
+                var options = {
+                    showTop: true
+                };
+                Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
+                Metro.activity.close(activity);
+            });
+        },
+        get: function get(page_url) {
+            var _this2 = this;
+
+            var activity = Metro.activity.open({
+                type: 'cycle',
+                overlayClickClose: false,
+                text: '<div class=\'mt-2 text-small fg-white\'>Loading data...</div>'
+            });
+            var page_url = page_url || '/api/all-logs'; //+'/'+Metro.session.getItem('id')
+            fetch(page_url).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this2.content = res.data;
+                console.log(_this2.content);
+                Metro.activity.close(activity);
+                var options = {
+                    showTop: true
+                    //to determine if obj is empty 
+                };console.log(res.data[0]);
+                if (res.data[0] == undefined) {
+                    Metro.toast.create('No records yet', null, 5000, 'yellow', options);
+                } else {
+                    _this2.empty = false;
+                }
+                //to determine if obj is empty
+
+                _this2.makePagination(res.meta, res.links);
             }).catch(function (error) {
                 console.log(error);
                 //off loader
@@ -78599,28 +78642,6 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.to,
-                          expression: "to"
-                        }
-                      ],
-                      staticClass: "force-select",
-                      attrs: { type: "date" },
-                      domProps: { value: _vm.to },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.to = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v("\n                        To   "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
                           value: _vm.from,
                           expression: "from"
                         }
@@ -78634,6 +78655,28 @@ var render = function() {
                             return
                           }
                           _vm.from = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v("\n                        To   "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.to,
+                          expression: "to"
+                        }
+                      ],
+                      staticClass: "force-select",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.to },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.to = $event.target.value
                         }
                       }
                     }),
@@ -78715,11 +78758,16 @@ var render = function() {
                       _c(
                         "a",
                         {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.pagination.prev_page_url,
+                              expression: "pagination.prev_page_url"
+                            }
+                          ],
                           staticClass: "page-link",
-                          attrs: {
-                            href: "#",
-                            disabled: !_vm.pagination.prev_page_url
-                          },
+                          attrs: { href: "#" },
                           on: {
                             click: function($event) {
                               $event.preventDefault()
@@ -78751,11 +78799,16 @@ var render = function() {
                       _c(
                         "a",
                         {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.pagination.next_page_url,
+                              expression: "pagination.next_page_url"
+                            }
+                          ],
                           staticClass: "page-link",
-                          attrs: {
-                            href: "#",
-                            disabled: !_vm.pagination.next_page_url
-                          },
+                          attrs: { href: "#" },
                           on: {
                             click: function($event) {
                               $event.preventDefault()
@@ -78763,7 +78816,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Next ")]
+                        [_vm._v("Next")]
                       )
                     ])
                   ])
@@ -78952,7 +79005,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var options = {
                 showTop: true
             };
-            Metro.toast.create('This page is for bus captains only!', null, 5000, 'yellow', options);
+            Metro.toast.create('That page is for bus captains only!', null, 5000, 'yellow', options);
             this.$router.push({ name: "index" });
         }
 

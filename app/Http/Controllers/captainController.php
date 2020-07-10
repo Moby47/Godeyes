@@ -137,6 +137,11 @@ class captainController extends Controller
     }
 
 
+    public function allLogsFiltered($from,$to){
+        $log = checkin:: whereBetween('created_at',[$from,$to])->select('id','name','surname','created_at','captain','time')->paginate(1);
+        return checkinres::collection($log);  
+    }
+
 
 
 }

@@ -40,3 +40,4 @@ Route::Get('/morning-count', 'captainController@morningCount');
 Route::Get('/evening-count', 'captainController@eveningCount');
 Route::Post('/captain-check-in', 'captainController@checkin');
 Route::Get('/all-logs', 'captainController@allLogs');
+Route::Get('/all-logs-filtered/{from}/{to}', 'captainController@allLogsFiltered');
