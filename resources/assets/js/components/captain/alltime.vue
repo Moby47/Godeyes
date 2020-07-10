@@ -18,8 +18,10 @@
     
     
     <template>
-
-            <div class="row">
+ <v-card
+    class="mx-auto mt-2"
+    max-width="425">
+            <div class="row" >
                     <div class="cell flex-align-self-start"> </div>
                     <div class="cell flex-align-self-center"> 
                           From  <input type='date' class='force-select' v-model='to'>
@@ -69,7 +71,7 @@
                         <v-btn class="button fg-white" color="green" >Export</v-btn>
                     </div>
 
-           
+ </v-card>         
           </template>
 
    

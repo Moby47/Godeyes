@@ -78480,6 +78480,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -78583,54 +78585,189 @@ var render = function() {
           ]),
           _vm._v(" "),
           [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "cell flex-align-self-start" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "cell flex-align-self-center" }, [
-                _vm._v(" \n                         From  "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.to,
-                      expression: "to"
-                    }
-                  ],
-                  staticClass: "force-select",
-                  attrs: { type: "date" },
-                  domProps: { value: _vm.to },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+            _c(
+              "v-card",
+              { staticClass: "mx-auto mt-2", attrs: { "max-width": "425" } },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "cell flex-align-self-start" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "cell flex-align-self-center" }, [
+                    _vm._v(" \n                         From  "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.to,
+                          expression: "to"
+                        }
+                      ],
+                      staticClass: "force-select",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.to },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.to = $event.target.value
+                        }
                       }
-                      _vm.to = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v("\n                        To   "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.from,
-                      expression: "from"
-                    }
-                  ],
-                  staticClass: "force-select",
-                  attrs: { type: "date" },
-                  domProps: { value: _vm.from },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    }),
+                    _vm._v("\n                        To   "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.from,
+                          expression: "from"
+                        }
+                      ],
+                      staticClass: "force-select",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.from },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.from = $event.target.value
+                        }
                       }
-                      _vm.from = $event.target.value
-                    }
-                  }
-                }),
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group text-center" },
+                      [
+                        _c(
+                          "v-btn",
+                          {
+                            staticClass: "button fg-white",
+                            attrs: { color: "green" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.go()
+                              }
+                            }
+                          },
+                          [_vm._v("Go")]
+                        )
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "cell flex-align-self-end" })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-border table-striped slideUp secondary-color text-cap table-dark"
+                  },
+                  [
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", { staticClass: "fg-white" }, [
+                          _vm._v("Passenger")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "fg-white" }, [
+                          _vm._v("Bus Captain")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "fg-white" }, [_vm._v("date")]),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "fg-white" }, [_vm._v("time")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.content, function(con) {
+                        return _c("tr", { key: con.id }, [
+                          _c("td", [
+                            _vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(con.captain))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(con.time))])
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-center" }, [
+                  _c("ul", { staticClass: "pagination mb-5" }, [
+                    _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: {
+                            href: "#",
+                            disabled: !_vm.pagination.prev_page_url
+                          },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.get(_vm.pagination.prev_page_url)
+                            }
+                          }
+                        },
+                        [_vm._v(" Prev ")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "page-link", attrs: { href: "#" } },
+                        [
+                          _c("span", [
+                            _vm._v(
+                              _vm._s(_vm.pagination.current_page) +
+                                " of " +
+                                _vm._s(_vm.pagination.last_page)
+                            )
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: {
+                            href: "#",
+                            disabled: !_vm.pagination.next_page_url
+                          },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.get(_vm.pagination.next_page_url)
+                            }
+                          }
+                        },
+                        [_vm._v("Next ")]
+                      )
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -78640,122 +78777,14 @@ var render = function() {
                       "v-btn",
                       {
                         staticClass: "button fg-white",
-                        attrs: { color: "green" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.go()
-                          }
-                        }
+                        attrs: { color: "green" }
                       },
-                      [_vm._v("Go")]
+                      [_vm._v("Export")]
                     )
                   ],
                   1
                 )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "cell flex-align-self-end" })
-            ]),
-            _vm._v(" "),
-            _c(
-              "table",
-              {
-                staticClass:
-                  "table table-border table-striped slideUp secondary-color text-cap table-dark"
-              },
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.content, function(con) {
-                    return _c("tr", { key: con.id }, [
-                      _c("td", [
-                        _vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(con.captain))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(con.time))])
-                    ])
-                  }),
-                  0
-                )
               ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-center" }, [
-              _c("ul", { staticClass: "pagination mb-5" }, [
-                _c("li", { staticClass: "page-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: {
-                        href: "#",
-                        disabled: !_vm.pagination.prev_page_url
-                      },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.get(_vm.pagination.prev_page_url)
-                        }
-                      }
-                    },
-                    [_vm._v(" Prev ")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "page-item" }, [
-                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-                    _c("span", [
-                      _vm._v(
-                        _vm._s(_vm.pagination.current_page) +
-                          " of " +
-                          _vm._s(_vm.pagination.last_page)
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "page-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: {
-                        href: "#",
-                        disabled: !_vm.pagination.next_page_url
-                      },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.get(_vm.pagination.next_page_url)
-                        }
-                      }
-                    },
-                    [_vm._v("Next ")]
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group text-center" },
-              [
-                _c(
-                  "v-btn",
-                  { staticClass: "button fg-white", attrs: { color: "green" } },
-                  [_vm._v("Export")]
-                )
-              ],
-              1
             )
           ]
         ],
@@ -78774,22 +78803,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bg-start" }, [
       _c("div", { staticClass: "dark-shade" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "fg-white" }, [_vm._v("Passenger")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "fg-white" }, [_vm._v("Bus Captain")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "fg-white" }, [_vm._v("date")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "fg-white" }, [_vm._v("time")])
-      ])
     ])
   }
 ]
