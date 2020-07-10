@@ -7,6 +7,9 @@ use App\captain;
 use App\checkin;
 use App\User;
 
+use Excel;
+//use Maatwebsite\Excel\Facades\Excel;
+
 //Api resource
 use App\Http\Resources\captainResource as capres;
 use App\Http\Resources\checkinResource as checkinres;
@@ -142,6 +145,44 @@ class captainController extends Controller
         return checkinres::collection($log);  
     }
 
+
+
+    public function export() 
+    {
+        {
+           // try{
+               $from = '2020-07-08 08:11:19';
+               $to = '2020-07-10 11:53:33';
+           $data = checkin:: whereBetween('created_at',[$from,$to])
+            ->select('name','surname','captain','created_at','time')->get()->toArray();
+                //    $data = User::get()->toArray();
+          //  }
+            
+           // catch(\Exception $e){
+            
+            //    return 'Error! Users Table Not Retrieved';
+           // }//catch end
+            
+           // try{
+                    return Excel::create('Shuttlers_Passengers', function($excel) use ($data) {
+            
+                        $excel->sheet('Passengers Records', function($sheet) use ($data)
+            
+                        {
+            
+                            $sheet->fromArray($data);
+            
+                        });
+            
+                    })->download($type);
+            //    }
+            
+           // catch(\Exception $e){
+            
+          //      return 'Error! Download Failed';
+           // }//catch end
+                }
+    }
 
 
 }
