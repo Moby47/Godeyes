@@ -113,6 +113,8 @@ export default {
                                Metro.session.setItem('token',res.data.token);
                                Metro.session.setItem('id',res.data.id);
                                Metro.session.setItem('name',res.data.name);
+                               Metro.session.setItem('surname',res.data.surname);
+                               Metro.session.setItem('state',res.data.state);
 
                                var options = {
                                 showTop: true,

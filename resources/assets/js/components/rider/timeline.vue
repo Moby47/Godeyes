@@ -161,7 +161,7 @@
               },
 
           getWeek(){
-                fetch('/api/week/'+Metro.session.getItem('surname'))
+                fetch('/api/week/'+Metro.session.getItem('id'))
             .then(res => res.json())
             .then(res=>{
                this.week = res
@@ -172,7 +172,7 @@
          },
 
          getMonth(){
-                fetch('/api/month/'+Metro.session.getItem('surname'))
+                fetch('/api/month/'+Metro.session.getItem('id'))
             .then(res => res.json())
             .then(res=>{
                this.month = res
@@ -183,7 +183,7 @@
          },
 
          getTotal(){
-                fetch('/api/total/'+Metro.session.getItem('surname'))
+                fetch('/api/total/'+Metro.session.getItem('id'))
             .then(res => res.json())
             .then(res=>{
                this.total = res

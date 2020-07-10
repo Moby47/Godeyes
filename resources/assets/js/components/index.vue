@@ -14,8 +14,8 @@
 <div class="cell order-1 mr-5">
     <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='rider()' 
     style="background-color: #3b6b63">
-        <span class="caption">Passenger</span>
-        <span class="mif-bus icon  ani-float"></span>
+        <span class="caption">Passengers</span>
+        <span class="mif-users icon  ani-float"></span>
     </button>
 </div>
 
@@ -38,7 +38,7 @@
       class="text-center shift"
       cols="12"
     >
-    <v-btn class="button"  @click.prevent='last()'>My Last Check-In</v-btn>
+    <v-btn class="button fg-white" style="background-color: #ce5247"  @click.prevent='last()'>My Last Check-In</v-btn>
     </div>
 
 

@@ -20,13 +20,12 @@
                                     <div @click.prevent="daily()"
                                             data-role="tile" style="background-color: #3b6b63">
                                         <span class="mif-cloudy icon"></span>
-                                        <span class="branding-bar">Daily Records</span>
-                                        <span class="badge-bottom">30</span>
+                                        <span class="branding-bar">Today's Records</span>
+                                        <span class="badge-bottom">{{today}}</span>
                             </div>
                                     <div data-role="tile" class="bg-cyan" @click.prevent="alltime()">
                                         <span class="mif-database icon"></span>
                                         <span class="branding-bar">All Records</span>
-                                        <span class="badge-bottom">10</span>
                                     </div>
                                     <div data-role="tile" style="background-color: #e08981" data-size="wide"
                                     @click.prevent="addRider()">
@@ -73,11 +72,23 @@
     export default {
         data(){
             return {
-               
+               today:0,
             }
         },
         mounted(){
-        
+ var state = Metro.session.getItem('state')
+                            if(state != 1){
+                                //auth
+                                var options = {
+                                showTop: true,
+                            }
+                         Metro.toast.create('This page is for bus captains only!',
+                         null, 5000, 'yellow', options);
+                                this.$router.push({name: "index"});
+                            }
+
+         this.getMorningCount()
+         this.getEveningCount()
         },
         methods: {
             rider(){
@@ -104,6 +115,28 @@
              this.$router.push({name: "alltime"});
             },
         
+          getMorningCount(){
+                fetch('/api/morning-count')
+            .then(res => res.json())
+            .then(res=>{
+               this.today =  this.today + res;
+            })
+            .catch(error =>{
+              console.log(error)
+                })
+         },
+
+
+         getEveningCount(){
+                fetch('/api/evening-count')
+            .then(res => res.json())
+            .then(res=>{
+               this.today =  this.today + res;
+            })
+            .catch(error =>{
+              console.log(error)
+                })
+         },
             
         },
     }

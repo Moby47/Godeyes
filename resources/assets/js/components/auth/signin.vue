@@ -47,7 +47,7 @@
       class="text-center shift"
       cols="12"
     >
-    <v-btn class="button"  @click.prevent='reg()'>It's my first time</v-btn>
+    <v-btn class="button fg-white" style="background-color: #ce5247"   @click.prevent='reg()'>It's my first time</v-btn>
     </div>
 
     </div>
@@ -112,6 +112,9 @@
                                    Metro.session.setItem('token',res.data.token);
                                    Metro.session.setItem('id',res.data.id);
                                    Metro.session.setItem('name',res.data.name);
+                                   Metro.session.setItem('surname',res.data.surname);
+                                   Metro.session.setItem('state',res.data.state);
+                                   
 
                                    Metro.toast.create('You are you, please proceed...',
                                  null, 9000, 'success', options);

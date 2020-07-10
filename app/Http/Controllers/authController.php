@@ -16,9 +16,10 @@ class authcontroller extends Controller
             return ['result'=>'2'];
         }
 
-        $user = User::where('name','=',$request->name)->first();
+      $user = User::where('name','=',$request->name)->first();
 
-        return ['token'=>$token, 'name'=>$request->name, 'id'=>$user->id];
+        return ['token'=>$token, 'name'=>$request->name, 'state'=>$user->state,
+        'surname'=>$user->surname, 'id'=>$user->id];
 
     }
 

@@ -15,6 +15,7 @@ class CreateCheckinsTable extends Migration
     {
         Schema::create('checkins', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('userId');
             $table->string('name');
             $table->string('surname');
             $table->string('captain');

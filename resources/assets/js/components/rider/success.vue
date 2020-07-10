@@ -31,8 +31,8 @@
         <div class="cell order-2">
                 <button class="shortcut rounded primary ani-hover-horizontal" @click.prevent='home()' 
                 style="background-color: #e08981">
-                    <span class="caption">Home</span>
-                    <span class="mif-home icon  ani-float"></span>
+                    <span class="caption">Done</span>
+                    <span class="mif-exit icon  ani-float"></span>
                 </button>
             </div>
         
@@ -69,7 +69,7 @@ export default {
             window.top.close();
          },
          home(){
-            this.$router.push({name: "index"});
+            this.$router.push({name: "rider"});
         },  
 
           get(){

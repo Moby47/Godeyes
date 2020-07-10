@@ -14,7 +14,7 @@ import rider from './components/rider/rider.vue'
 import success from './components/rider/success.vue'
 import timeline from './components/rider/timeline.vue'
 
-import daily from './components/captain/daily.vue'
+import daily from './components/daily.vue'
 import alltime from './components/captain/alltime.vue'
 import board from './components/captain/board.vue'
 import addRider from './components/captain/addRider.vue'
@@ -101,7 +101,7 @@ export default new Router({
             name: 'board',
             component: board,
              meta:{
-              //  auth: true
+                auth: true
             }
         },
         {

@@ -42,7 +42,7 @@ class riderController extends Controller
         
             $time = "morning";
         //   $today = \carbon\carbon::today();
-        $check = checkin::where('id','=', $request->input('id'))
+        $check = checkin::where('userId','=', $request->input('id'))
             ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
             ->select('custom_date')->pluck('custom_date')->first();
             if (empty($check))
@@ -50,6 +50,7 @@ class riderController extends Controller
                 //save
                 $user = User::findorfail($request->input('id'));
              $save = new checkin;
+             $save->userId = $request->input('id');
              $save->name = $user->name;
              $save->surname =  $user->surname;
              $save->captain = $request->input('Captain');
@@ -64,28 +65,14 @@ class riderController extends Controller
         }elseif(date("H") > 11 && date("H") < 16){
 
             $time = "afternoon";
-           /* $check = checkin::where('surname','=', $request->input('Surname'))
-            ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
-            ->select('custom_date')->pluck('custom_date')->first();
-            if (empty($check))
-            {
-                //save
-             $save = new checkin;
-             $save->name = $request->input('Name');
-             $save->surname = $request->input('Surname');
-             $save->captain = $request->input('Captain');
-             $save->custom_date = date("Y-m-d");
-             $save->time = $time;
-             $save->save();
-             return 1;
-            }else{*/
+          
                return ['status'=>48,'time'=>$time];
            // }
 
         }elseif(date("H") > 17){
 
          $time = "evening";
-         $check = checkin::where('id','=', $request->input('id'))
+         $check = checkin::where('userId','=', $request->input('id'))
          ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
          ->select('custom_date')->pluck('custom_date')->first();
          if (empty($check))
@@ -93,6 +80,7 @@ class riderController extends Controller
              //save
              $user = User::findorfail($request->input('id'));
           $save = new checkin;
+          $save->userId = $request->input('id');
           $save->name = $user->name;
           $save->surname =  $user->surname;
           $save->captain = $request->input('Captain');
@@ -111,16 +99,23 @@ class riderController extends Controller
 
     public function logs($id)
     {
-        $log = checkin::where('id','=', $id)->select('id','created_at','captain','time')->paginate(3);
+        $log = checkin::where('userId','=', $id)->select('id','created_at','captain','time')->paginate(3);
         return checkinres::collection($log);   
     }
+
+
+    public function logsCount($id)
+    {
+       return $log = checkin::where('userId','=', $id)->select('id')->count();
+    }
+
 
    
     public function week($id)
     {
         $ago = \carbon\carbon::now()->subWeek();
         $now = \carbon\carbon::now();
-        return $data = checkin::where('id','=',$id)
+        return $data = checkin::where('userId','=',$id)
         ->whereBetween('created_at',[$ago,$now])->pluck('id')->count();
     }
 
@@ -128,19 +123,19 @@ class riderController extends Controller
     {
         $ago = \carbon\carbon::now()->subMonth();
         $now = \carbon\carbon::now();
-        return $data = checkin::where('id','=',$id)
+        return $data = checkin::where('userId','=',$id)
         ->whereBetween('created_at',[$ago,$now])->pluck('id')->count();
     }
 
     public function total($id)
     {
-        return $data = checkin::where('id','=',$id)->pluck('id')->count();
+        return $data = checkin::where('userId','=',$id)->pluck('id')->count();
     }
 
 
     public function success($id)
     {
-        $res = checkin::orderby('id','desc')->where('id','=', $id)
+        $res = checkin::orderby('id','desc')->where('userId','=', $id)
         ->select('id','time','captain','created_at')->get()->take(1);
         return checkinres::collection($res);   
     }
