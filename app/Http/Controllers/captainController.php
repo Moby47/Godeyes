@@ -19,18 +19,18 @@ class captainController extends Controller
 {
     public function getCaptains(Request $request)
     {
-        $res = captain::select('name','surname','id','route')->get();
+        $res = user::where('state','=',1)->select('name','surname','id','route')->get();
         return capres::collection($res);   
     }
 
     public function addCaptain(Request $request)
     {
-          //save
+         /* //save
           $save = new captain;
           $save->name = $request->input('Name');
           $save->surname = $request->input('Surname');
           $save->save();
-          return 1;  
+          return 1;  */
     }
 
 

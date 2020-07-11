@@ -76309,7 +76309,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     Metro.toast.create('You are ready, continue...', null, 5000, 'success', options);
 
                                     Metro.activity.close(activity);
-                                    _this.$router.push({ name: "rider" });
+                                    _this.$router.push({ name: "index" });
                                 }
                             }).catch(function (error) {
                                 Metro.activity.close(activity);

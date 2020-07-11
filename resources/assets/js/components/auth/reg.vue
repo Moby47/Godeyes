@@ -123,7 +123,7 @@ export default {
                          null, 5000, 'success', options);
 
                                Metro.activity.close(activity);
-                               this.$router.push({name: "rider"});
+                               this.$router.push({name: "index"});
                           }
                     })
                     .catch(error =>{
