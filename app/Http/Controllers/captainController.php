@@ -8,6 +8,7 @@ use App\checkin;
 use App\User;
 
 use Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
 //use Maatwebsite\Excel\Facades\Excel;
 
 //Api resource
@@ -147,12 +148,14 @@ class captainController extends Controller
 
 
 
-    public function export() 
+    public function export($from,$to) 
     {
-        {
+        /*
+        $type = 'csv';
+       // {
            // try{
                $from = '2020-07-08 08:11:19';
-               $to = '2020-07-10 11:53:33';
+               $to = '2020-07-12 15:53:33';
            $data = checkin:: whereBetween('created_at',[$from,$to])
             ->select('name','surname','captain','created_at','time')->get()->toArray();
                 //    $data = User::get()->toArray();
@@ -181,8 +184,24 @@ class captainController extends Controller
             
           //      return 'Error! Download Failed';
            // }//catch end
-                }
+          //      }
+          */
+          session(['from' => $from]);
+          session(['to' => $to]);
+          return Excel::download(new DataExport, 'Shuttlers_Passengers.xlsx');
+
     }
 
 
+}
+
+
+class DataExport implements FromCollection{
+        function collection()
+        {
+             $from =  session('from');
+            $to = session('to');
+      return  $data = checkin:: whereBetween('created_at',[$from,$to])
+     ->select('name','surname','captain','created_at','time')->get();//->toArray();
+        }
 }

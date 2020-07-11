@@ -42,4 +42,4 @@ Route::Post('/captain-check-in', 'captainController@checkin');
 Route::Get('/all-logs', 'captainController@allLogs');
 Route::Get('/all-logs-filtered/{from}/{to}', 'captainController@allLogsFiltered');
 
-Route::get('/export', 'captainController@export')->name('export');
+Route::get('/export-file/{from}/{to}', 'captainController@export')->name('export');

@@ -163,8 +163,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-       // Maatwebsite\Excel\ExcelServiceProvider::class,
-       'Maatwebsite\Excel\ExcelServiceProvider',
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+      // 'Maatwebsite\Excel\ExcelServiceProvider',
 
         /*
          * Package Service Providers...
@@ -229,8 +229,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
-        //'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+       // 'Excel' => 'Maatwebsite\Excel\Facades\Excel',
     ],
 
 ];

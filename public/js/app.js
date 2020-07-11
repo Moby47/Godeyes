@@ -73161,7 +73161,7 @@ var install = VeeValidate$1.install;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_rider_success_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_rider_success_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_daily_vue__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_daily_vue__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_daily_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_daily_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue__);
@@ -78340,9 +78340,312 @@ if (false) {
 }
 
 /***/ }),
-/* 197 */,
-/* 198 */,
-/* 199 */,
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(198)
+/* template */
+var __vue_template__ = __webpack_require__(199)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/daily.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-eeeadbdc", Component.options)
+  } else {
+    hotAPI.reload("data-v-eeeadbdc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 198 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            morning: [],
+            evening: [],
+            morningC: '',
+            eveningC: ''
+        };
+    },
+    mounted: function mounted() {
+        this.getMorning();
+        this.getEvening();
+        this.getMorningCount();
+        this.getEveningCount();
+    },
+
+    methods: {
+        more: function more() {
+            alert("Feature Under Maintenance");
+        },
+        getMorning: function getMorning() {
+            var _this = this;
+
+            var activity = Metro.activity.open({
+                type: 'cycle',
+                overlayClickClose: false,
+                text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>'
+            });
+            fetch('/api/morning').then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this.morning = res.data;
+                Metro.activity.close(activity);
+            }).catch(function (error) {
+                console.log(error);
+                Metro.activity.close(activity);
+            });
+        },
+        getEvening: function getEvening() {
+            var _this2 = this;
+
+            var activity2 = Metro.activity.open({
+                type: 'cycle',
+                overlayClickClose: false,
+                text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>'
+            });
+            fetch('/api/evening').then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this2.evening = res.data;
+                Metro.activity.close(activity2);
+            }).catch(function (error) {
+                console.log(error);
+                Metro.activity.close(activity2);
+            });
+        },
+        getMorningCount: function getMorningCount() {
+            var _this3 = this;
+
+            fetch('/api/morning-count').then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this3.morningC = res;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getEveningCount: function getEveningCount() {
+            var _this4 = this;
+
+            fetch('/api/evening-count').then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this4.eveningC = res;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "centered slideUp" },
+        [
+          _c("h4", { staticClass: "text-center sub-font-fam" }, [
+            _vm._v("Check-Ins Today")
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card",
+            { staticClass: "mx-auto mt-3", attrs: { "max-width": "344" } },
+            [
+              _c("b", { staticClass: "headline mb-1 ml-1" }, [
+                _vm._v("Morning")
+              ]),
+              _vm._v(" "),
+              _c("h4", [
+                _c("span", { staticClass: "badge bg-green fg-white" }, [
+                  _vm._v(_vm._s(_vm.morningC))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                _vm._l(_vm.morning, function(con) {
+                  return _c("v-card-text", { key: con.id }, [
+                    _c("div", [
+                      _vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))
+                    ]),
+                    _vm._v(" "),
+                    _c("small", [
+                      _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
+                    ])
+                  ])
+                }),
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card",
+            { staticClass: "mx-auto mt-3", attrs: { "max-width": "344" } },
+            [
+              _c("p", { staticClass: "headline mb-1 ml-1" }, [
+                _vm._v("Evening")
+              ]),
+              _vm._v(" "),
+              _c("h4", [
+                _c("span", { staticClass: "badge bg-green fg-white" }, [
+                  _vm._v(_vm._s(_vm.eveningC))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                _vm._l(_vm.evening, function(con) {
+                  return _c("v-card-text", { key: con.id }, [
+                    _c("div", [
+                      _vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))
+                    ]),
+                    _vm._v(" "),
+                    _c("small", [
+                      _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
+                    ])
+                  ])
+                }),
+                1
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("floating")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-start" }, [
+      _c("div", { staticClass: "dark-shade" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-eeeadbdc", module.exports)
+  }
+}
+
+/***/ }),
 /* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -78484,126 +78787,182 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            content: [],
-            pagination: [],
-            to: '',
-            from: ''
-        };
-    },
-    mounted: function mounted() {
-        var state = Metro.session.getItem('state');
-        if (state != 1) {
-            //auth
-            var options = {
-                showTop: true
-            };
-            Metro.toast.create('That page is for bus captains only!', null, 5000, 'yellow', options);
-            this.$router.push({ name: "index" });
-        }
-
-        this.get();
-    },
-
-
-    methods: {
-        go: function go(page_url) {
-            var _this = this;
-
-            if (this.to == '' || this.from == '') {
-                var options = {
-                    showTop: true
-                };
-                Metro.toast.create('Please select dates', null, 5000, 'yellow', options);
-                return;
-            }
-
-            var activity = Metro.activity.open({
-                type: 'cycle',
-                overlayClickClose: false,
-                text: '<div class=\'mt-2 text-small fg-white\'>Loading data...</div>'
-            });
-            var page_url = page_url || '/api/all-logs-filtered' + '/' + this.from + '/' + this.to;
-            fetch(page_url).then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                _this.content = res.data;
-                console.log(_this.content);
-                Metro.activity.close(activity);
-                var options = {
-                    showTop: true
-                    //to determine if obj is empty 
-                };console.log(res.data[0]);
-                if (res.data[0] == undefined) {
-                    Metro.toast.create('No records found', null, 5000, 'yellow', options);
-                } else {
-                    _this.empty = false;
-                }
-                //to determine if obj is empty
-
-                _this.makePagination(res.meta, res.links);
-            }).catch(function (error) {
-                console.log(error);
-                //off loader
-
-                var options = {
-                    showTop: true
-                };
-                Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
-                Metro.activity.close(activity);
-            });
-        },
-        get: function get(page_url) {
-            var _this2 = this;
-
-            var activity = Metro.activity.open({
-                type: 'cycle',
-                overlayClickClose: false,
-                text: '<div class=\'mt-2 text-small fg-white\'>Loading data...</div>'
-            });
-            var page_url = page_url || '/api/all-logs'; //+'/'+Metro.session.getItem('id')
-            fetch(page_url).then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                _this2.content = res.data;
-                console.log(_this2.content);
-                Metro.activity.close(activity);
-                var options = {
-                    showTop: true
-                    //to determine if obj is empty 
-                };console.log(res.data[0]);
-                if (res.data[0] == undefined) {
-                    Metro.toast.create('No records yet', null, 5000, 'yellow', options);
-                } else {
-                    _this2.empty = false;
-                }
-                //to determine if obj is empty
-
-                _this2.makePagination(res.meta, res.links);
-            }).catch(function (error) {
-                console.log(error);
-                //off loader
-
-                var options = {
-                    showTop: true
-                };
-                Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
-                Metro.activity.close(activity);
-            });
-        },
-        makePagination: function makePagination(meta, links) {
-            var pagination = {
-                current_page: meta.current_page,
-                last_page: meta.last_page,
-                next_page_url: links.next,
-                prev_page_url: links.prev
-            };
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-            this.pagination = pagination;
-        }
+  data: function data() {
+    return {
+      content: [],
+      pagination: [],
+      to: '',
+      from: ''
+    };
+  },
+  mounted: function mounted() {
+    var state = Metro.session.getItem('state');
+    if (state != 1) {
+      //auth
+      var options = {
+        showTop: true
+      };
+      Metro.toast.create('That page is for bus captains only!', null, 5000, 'yellow', options);
+      this.$router.push({ name: "index" });
     }
+
+    this.get();
+  },
+
+
+  methods: {
+    excelFile: function excelFile() {
+      if (this.to == '' || this.from == '') {
+        var options = {
+          showTop: true
+        };
+        Metro.toast.create('Please select dates', null, 5000, 'yellow', options);
+        return;
+      }
+
+      var activity = Metro.activity.open({
+        type: 'cycle',
+        overlayClickClose: false,
+        text: '<div class=\'mt-2 text-small fg-white\'>Exporting...</div>'
+      });
+
+      axios({
+        url: '/api/export-file' + '/' + this.from + '/' + this.to,
+        method: 'GET',
+        responseType: 'blob' // important
+      }).then(function (response) {
+        var url = window.URL.createObjectURL(new Blob([response.data]));
+        var link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'Shuttlers_Passengers.xlsx'); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+        Metro.activity.close(activity);
+      });
+
+      /*
+      var   page_url = page_url || '/api/export-file' +'/'+this.from +'/'+this.to
+      fetch(page_url)
+      .then(res => res.json())
+      .then(res=>{
+        // this.content = res.data;
+         console.log(res)
+         Metro.activity.close(activity);
+         var options = {
+                      showTop: true,
+                  }
+        
+      })
+      .catch(error =>{
+        console.log(error)
+          //off loader
+       
+          var options = {
+                      showTop: true,
+                  }
+               Metro.toast.create('A temporary network error occured... Please reload page',
+               null, 5000, 'yellow', options);
+               Metro.activity.close(activity);
+             
+          })
+          */
+    },
+    go: function go(page_url) {
+      var _this = this;
+
+      if (this.to == '' || this.from == '') {
+        var options = {
+          showTop: true
+        };
+        Metro.toast.create('Please select dates', null, 5000, 'yellow', options);
+        return;
+      }
+
+      var activity = Metro.activity.open({
+        type: 'cycle',
+        overlayClickClose: false,
+        text: '<div class=\'mt-2 text-small fg-white\'>Loading data...</div>'
+      });
+      var page_url = page_url || '/api/all-logs-filtered' + '/' + this.from + '/' + this.to;
+      fetch(page_url).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this.content = res.data;
+        console.log(_this.content);
+        Metro.activity.close(activity);
+        var options = {
+          showTop: true
+          //to determine if obj is empty 
+        };console.log(res.data[0]);
+        if (res.data[0] == undefined) {
+          Metro.toast.create('No records found', null, 5000, 'yellow', options);
+        } else {
+          _this.empty = false;
+        }
+        //to determine if obj is empty
+
+        _this.makePagination(res.meta, res.links);
+      }).catch(function (error) {
+        console.log(error);
+        //off loader
+
+        var options = {
+          showTop: true
+        };
+        Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
+        Metro.activity.close(activity);
+      });
+    },
+    get: function get(page_url) {
+      var _this2 = this;
+
+      var activity = Metro.activity.open({
+        type: 'cycle',
+        overlayClickClose: false,
+        text: '<div class=\'mt-2 text-small fg-white\'>Loading data...</div>'
+      });
+      var page_url = page_url || '/api/all-logs'; //+'/'+Metro.session.getItem('id')
+      fetch(page_url).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this2.content = res.data;
+        console.log(_this2.content);
+        Metro.activity.close(activity);
+        var options = {
+          showTop: true
+          //to determine if obj is empty 
+        };console.log(res.data[0]);
+        if (res.data[0] == undefined) {
+          Metro.toast.create('No records yet', null, 5000, 'yellow', options);
+        } else {
+          _this2.empty = false;
+        }
+        //to determine if obj is empty
+
+        _this2.makePagination(res.meta, res.links);
+      }).catch(function (error) {
+        console.log(error);
+        //off loader
+
+        var options = {
+          showTop: true
+        };
+        Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow', options);
+        Metro.activity.close(activity);
+      });
+    },
+    makePagination: function makePagination(meta, links) {
+      var pagination = {
+        current_page: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
+      };
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+      this.pagination = pagination;
+    }
+  }
 });
 
 /***/ }),
@@ -78830,7 +79189,13 @@ var render = function() {
                       "v-btn",
                       {
                         staticClass: "button fg-white",
-                        attrs: { color: "green" }
+                        attrs: { color: "green" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.excelFile()
+                          }
+                        }
                       },
                       [_vm._v("Export")]
                     )
@@ -106747,319 +107112,6 @@ webpackContext.id = 221;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(231)
-/* template */
-var __vue_template__ = __webpack_require__(232)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/daily.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-eeeadbdc", Component.options)
-  } else {
-    hotAPI.reload("data-v-eeeadbdc", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 231 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            morning: [],
-            evening: [],
-            morningC: '',
-            eveningC: ''
-        };
-    },
-    mounted: function mounted() {
-        this.getMorning();
-        this.getEvening();
-        this.getMorningCount();
-        this.getEveningCount();
-    },
-
-    methods: {
-        more: function more() {
-            alert("Feature Under Maintenance");
-        },
-        getMorning: function getMorning() {
-            var _this = this;
-
-            var activity = Metro.activity.open({
-                type: 'cycle',
-                overlayClickClose: false,
-                text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>'
-            });
-            fetch('/api/morning').then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                _this.morning = res.data;
-                Metro.activity.close(activity);
-            }).catch(function (error) {
-                console.log(error);
-                Metro.activity.close(activity);
-            });
-        },
-        getEvening: function getEvening() {
-            var _this2 = this;
-
-            var activity2 = Metro.activity.open({
-                type: 'cycle',
-                overlayClickClose: false,
-                text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>'
-            });
-            fetch('/api/evening').then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                _this2.evening = res.data;
-                Metro.activity.close(activity2);
-            }).catch(function (error) {
-                console.log(error);
-                Metro.activity.close(activity2);
-            });
-        },
-        getMorningCount: function getMorningCount() {
-            var _this3 = this;
-
-            fetch('/api/morning-count').then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                _this3.morningC = res;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        getEveningCount: function getEveningCount() {
-            var _this4 = this;
-
-            fetch('/api/evening-count').then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                _this4.eveningC = res;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 232 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "centered slideUp" },
-        [
-          _c("h4", { staticClass: "text-center sub-font-fam" }, [
-            _vm._v("Check-Ins Today")
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-card",
-            { staticClass: "mx-auto mt-3", attrs: { "max-width": "344" } },
-            [
-              _c("b", { staticClass: "headline mb-1 ml-1" }, [
-                _vm._v("Morning")
-              ]),
-              _vm._v(" "),
-              _c("h4", [
-                _c("span", { staticClass: "badge bg-green fg-white" }, [
-                  _vm._v(_vm._s(_vm.morningC))
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "span",
-                _vm._l(_vm.morning, function(con) {
-                  return _c("v-card-text", { key: con.id }, [
-                    _c("div", [
-                      _vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))
-                    ]),
-                    _vm._v(" "),
-                    _c("small", [
-                      _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
-                    ])
-                  ])
-                }),
-                1
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card",
-            { staticClass: "mx-auto mt-3", attrs: { "max-width": "344" } },
-            [
-              _c("p", { staticClass: "headline mb-1 ml-1" }, [
-                _vm._v("Evening")
-              ]),
-              _vm._v(" "),
-              _c("h4", [
-                _c("span", { staticClass: "badge bg-green fg-white" }, [
-                  _vm._v(_vm._s(_vm.eveningC))
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "span",
-                _vm._l(_vm.evening, function(con) {
-                  return _c("v-card-text", { key: con.id }, [
-                    _c("div", [
-                      _vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))
-                    ]),
-                    _vm._v(" "),
-                    _c("small", [
-                      _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
-                    ])
-                  ])
-                }),
-                1
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("floating")
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-start" }, [
-      _c("div", { staticClass: "dark-shade" })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-eeeadbdc", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

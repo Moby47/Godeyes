@@ -68,7 +68,7 @@
                        
   </div>
                 <div class="form-group text-center">
-                        <v-btn class="button fg-white" color="green" >Export</v-btn>
+                        <v-btn class="button fg-white" color="green" @click.prevent="excelFile()">Export</v-btn>
                     </div>
 
  </v-card>         
@@ -111,6 +111,66 @@
         },
 
         methods: {
+
+            excelFile(){
+                if(this.to == ''  || this.from == ''){
+                          var options = {
+                                showTop: true,
+                            }
+ Metro.toast.create('Please select dates',
+    null, 5000, 'yellow', options);
+                         return;
+                 }
+
+                  var activity =  Metro.activity.open({
+                    type: 'cycle',
+                    overlayClickClose: false,
+                    text: '<div class=\'mt-2 text-small fg-white\'>Exporting...</div>',
+                })
+
+                axios({
+                url: '/api/export-file' +'/'+this.from +'/'+this.to,
+                method: 'GET',
+                responseType: 'blob', // important
+              }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'Shuttlers_Passengers.xlsx'); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+                Metro.activity.close(activity);
+              });
+
+                /*
+                var   page_url = page_url || '/api/export-file' +'/'+this.from +'/'+this.to
+                fetch(page_url)
+                .then(res => res.json())
+                .then(res=>{
+                  // this.content = res.data;
+                   console.log(res)
+                   Metro.activity.close(activity);
+                   var options = {
+                                showTop: true,
+                            }
+                  
+                })
+                .catch(error =>{
+                  console.log(error)
+                    //off loader
+                 
+                    var options = {
+                                showTop: true,
+                            }
+                         Metro.toast.create('A temporary network error occured... Please reload page',
+                         null, 5000, 'yellow', options);
+                         Metro.activity.close(activity);
+                       
+                    })
+                    */
+            },
+
+
 
          go(page_url){
 
