@@ -34,12 +34,12 @@ Route::Get('/logs-count/{id}', 'riderController@logsCount');
 
 Route::Post('/add-captain', 'captainController@addCaptain');
 Route::get('/get-captains', 'captainController@getCaptains');
-Route::Get('/morning', 'captainController@morning');
-Route::Get('/evening', 'captainController@evening');
-Route::Get('/morning-count', 'captainController@morningCount');
-Route::Get('/evening-count', 'captainController@eveningCount');
+Route::Get('/morning/{fullname}', 'captainController@morning');
+Route::Get('/evening/{fullname}', 'captainController@evening');
+Route::Get('/morning-count/{fullname}', 'captainController@morningCount');
+Route::Get('/evening-count/{fullname}', 'captainController@eveningCount');
 Route::Post('/captain-check-in', 'captainController@checkin');
-Route::Get('/all-logs', 'captainController@allLogs');
-Route::Get('/all-logs-filtered/{from}/{to}', 'captainController@allLogsFiltered');
+Route::Get('/all-logs/{fullname}', 'captainController@allLogs');
+Route::Get('/all-logs-filtered/{from}/{to}/{fullname}', 'captainController@allLogsFiltered');
 
-Route::get('/export-file/{from}/{to}', 'captainController@export')->name('export');
+Route::get('/export-file/{from}/{to}/{fullname}', 'captainController@export')->name('export');

@@ -52,11 +52,11 @@
       
   <div class='text-center'>
        <ul class="pagination mb-5">
-                            <li class="page-item"><a class="page-link" href="#" @click.prevent="get(pagination.prev_page_url)" :disabled="!pagination.prev_page_url"> Prev </a></li>
+                            <li class="page-item"><a class="page-link" href="#" @click.prevent="get(pagination.prev_page_url)" v-show="pagination.prev_page_url"> Prev </a></li>
 
                             <li class="page-item"><a class="page-link" href="#"><span>{{pagination.current_page}} of {{pagination.last_page}}</span></a></li>
                             
-                  <li class="page-item"><a class="page-link" href="#" @click.prevent="get(pagination.next_page_url)" :disabled="!pagination.next_page_url">Next </a></li>
+                  <li class="page-item"><a class="page-link" href="#" @click.prevent="get(pagination.next_page_url)" v-show="pagination.next_page_url">Next </a></li>
                         </ul>
                        
   </div>

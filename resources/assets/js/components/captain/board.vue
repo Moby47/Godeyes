@@ -77,7 +77,9 @@
         },
         mounted(){
  var state = Metro.session.getItem('state')
-                            if(state != 1){
+                            if(state == 1){
+                                
+                            }else if (state == 0){
                                 //auth
                                 var options = {
                                 showTop: true,
@@ -85,6 +87,14 @@
                          Metro.toast.create('That page is for bus captains only!',
                          null, 5000, 'yellow', options);
                                 this.$router.push({name: "index"});
+                            }else{
+                                //auth
+                                var options = {
+                                showTop: true,
+                            }
+                         Metro.toast.create('Hi captain, Please contact Admin for login details',
+                         null, 5000, 'success', options);
+                                this.$router.push({name: "signin"});
                             }
 
          this.getMorningCount()

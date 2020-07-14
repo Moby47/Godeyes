@@ -25,43 +25,53 @@ class captainController extends Controller
 
     public function addCaptain(Request $request)
     {
-         /* //save
-          $save = new captain;
-          $save->name = $request->input('Name');
-          $save->surname = $request->input('Surname');
-          $save->save();
-          return 1;  */
+            //create
+       $user = new User;
+       $user->name = $request->input('name');
+       $user->surname = $request->input('surname');
+       $user->email = $request->input('email');
+       $user->route = $request->input('route');
+       $user->state = $request->input('state');
+       $user->password = bcrypt($request->password);
+       $user->save();
+       
+        //response
+        return 1;
     }
 
 
-    public function morning()
+    public function morning($fullname)
     {
          $time = "morning";
-         $check = checkin::where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
+         $check = checkin::where('captain','=',$fullname)
+         ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
          ->select('name', 'surname','id', 'created_at')->get();   
          return checkinres::collection($check);   
     }
 
-    public function morningCount()
+    public function morningCount($fullname)
     {
          $time = "morning";
-       return  $check = checkin::where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
+       return  $check = checkin::where('captain','=',$fullname)
+       ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
          ->select('name')->count();   
     }
 
 
-    public function evening()
+    public function evening($fullname)
     {
         $time = "evening";
-      $check = checkin::where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
+      $check = checkin::where('captain','=',$fullname)
+      ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
           ->select('name', 'surname','id', 'created_at')->get(); 
           return checkinres::collection($check);
     }
 
-    public function eveningCount()
+    public function eveningCount($fullname)
     {
         $time = "evening";
-        return  $check = checkin::where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
+        return  $check = checkin::where('captain','=',$fullname)
+        ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
           ->select('name')->count(); 
     }
 
@@ -135,20 +145,22 @@ class captainController extends Controller
 
 
 
-    public function allLogs(){
-        $log = checkin::select('id','name','surname','created_at','captain','time')->paginate(1);
+    public function allLogs($fullname){
+        $log = checkin::where('captain','=',$fullname)
+        ->select('id','name','surname','created_at','captain','time')->paginate(10);
         return checkinres::collection($log);  
     }
 
 
-    public function allLogsFiltered($from,$to){
-        $log = checkin:: whereBetween('created_at',[$from,$to])->select('id','name','surname','created_at','captain','time')->paginate(1);
+    public function allLogsFiltered($from,$to,$fullname){
+        $log = checkin::where('captain','=',$fullname)
+        ->whereBetween('created_at',[$from,$to])->select('id','name','surname','created_at','captain','time')->paginate(1);
         return checkinres::collection($log);  
     }
 
 
 
-    public function export($from,$to) 
+    public function export($from,$to,$fullname) 
     {
         /*
         $type = 'csv';
@@ -188,6 +200,7 @@ class captainController extends Controller
           */
           session(['from' => $from]);
           session(['to' => $to]);
+          session(['fullname' => $fullname]);
           return Excel::download(new DataExport, 'Shuttlers_Passengers.xlsx');
 
     }
@@ -201,7 +214,10 @@ class DataExport implements FromCollection{
         {
              $from =  session('from');
             $to = session('to');
-      return  $data = checkin:: whereBetween('created_at',[$from,$to])
+            $fullname = session('fullname');
+
+      return  $data = checkin::where('captain','=',$fullname)
+      ->whereBetween('created_at',[$from,$to])
      ->select('name','surname','captain','created_at','time')->get();//->toArray();
         }
 }

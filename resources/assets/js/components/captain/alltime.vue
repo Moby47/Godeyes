@@ -129,7 +129,7 @@
                 })
 
                 axios({
-                url: '/api/export-file' +'/'+this.from +'/'+this.to,
+                url: '/api/export-file' +'/'+this.from +'/'+this.to+'/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname'),
                 method: 'GET',
                 responseType: 'blob', // important
               }).then((response) => {
@@ -188,7 +188,7 @@
                     overlayClickClose: false,
                     text: '<div class=\'mt-2 text-small fg-white\'>Loading data...</div>',
                 })
-                var   page_url = page_url || '/api/all-logs-filtered' +'/'+this.from +'/'+this.to
+                var   page_url = page_url || '/api/all-logs-filtered' +'/'+this.from +'/'+this.to+'/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname')
                 fetch(page_url)
                 .then(res => res.json())
                 .then(res=>{
@@ -231,7 +231,7 @@
                     overlayClickClose: false,
                     text: '<div class=\'mt-2 text-small fg-white\'>Loading data...</div>',
                 })
-                var   page_url = page_url || '/api/all-logs' //+'/'+Metro.session.getItem('id')
+                var   page_url = page_url || '/api/all-logs'+'/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname')
                 fetch(page_url)
                 .then(res => res.json())
                 .then(res=>{

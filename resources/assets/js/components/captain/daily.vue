@@ -68,6 +68,17 @@
             }
         },
         mounted(){
+          var state = Metro.session.getItem('state')
+                            if(state != 1){
+                                //auth
+                                var options = {
+                                showTop: true,
+                            }
+                         Metro.toast.create('That page is for bus captains only!',
+                         null, 5000, 'yellow', options);
+                                this.$router.push({name: "index"});
+                            }
+
           this.getMorning()
           this.getEvening()
           this.getMorningCount()
@@ -84,7 +95,7 @@
                     overlayClickClose: false,
                     text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>',
                 })
-                fetch('/api/morning')
+                fetch('/api/morning'+'/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname'))
             .then(res => res.json())
             .then(res=>{
                this.morning = res.data;
@@ -103,7 +114,7 @@
                     overlayClickClose: false,
                     text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>',
                 })
-                fetch('/api/evening')
+                fetch('/api/evening'+'/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname'))
             .then(res => res.json())
             .then(res=>{
                this.evening = res.data;
@@ -116,7 +127,7 @@
          },
 
            getMorningCount(){
-                fetch('/api/morning-count')
+                fetch('/api/morning-count'+'/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname'))
             .then(res => res.json())
             .then(res=>{
                this.morningC = res;
@@ -128,7 +139,7 @@
 
 
          getEveningCount(){
-                fetch('/api/evening-count')
+                fetch('/api/evening-count'+'/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname'))
             .then(res => res.json())
             .then(res=>{
                this.eveningC = res;

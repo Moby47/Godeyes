@@ -37,6 +37,7 @@
     <div
       class="text-center shift"
       cols="12"
+      v-show='passenger'
     >
     <v-btn class="button fg-white" style="background-color: #ce5247"  @click.prevent='last()'>My Last Check-In</v-btn>
     </div>
@@ -65,11 +66,14 @@
 export default {
     data(){
         return {
-           
+           passenger:true
         }
     },
     mounted(){
-    
+        var state = Metro.session.getItem('state')
+                            if(state == 1){
+                                this.passenger = false
+                            }
     },
     methods: {
         rider(){

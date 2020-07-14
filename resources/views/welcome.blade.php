@@ -5,8 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>GodEyes</title>
+        <title>Watch Dog</title>
 
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/fav/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/fav/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/fav/favicon-16x16.png">
+<!--<link rel="manifest" href="/images/fav/site.webmanifest">-->
+
+   <!-- Web Application Manifest -->
+   <link rel="manifest" href="/manifest.json">
+   
     <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">   
 
@@ -42,6 +50,22 @@
                     <script src="/js/particles.min.js"></script>
          <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
         <script src="{{asset('/js/app.js')}}"></script>
+
+        <script>
+          // Initialize the service worker
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sWDog.js', {
+              scope: '.' 
+            }).then(function (registration) {
+              // Registration was successful
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+              // registration failed :(
+              console.log('ServiceWorker registration failed: ', err);
+            });
+          }
+        </script>
+
 <script>
            /*===================================*
 	02. BACKGROUND ANIMATION JS

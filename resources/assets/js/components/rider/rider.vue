@@ -21,17 +21,17 @@
                                         <span class="mif-user-check icon"></span>
                                         <span class="branding-bar">Check In</span>
                             </div>
-                                    <div data-role="tile" class="bg-cyan" @click.prevent="daily()">
-                                        <span class="mif-cloudy icon"></span>
-                                        <span class="branding-bar">Today's Record</span>
-                                        <span class="badge-bottom">{{today}}</span>
-                                    </div>
-                                    <div data-role="tile" style="background-color: #e08981" data-size="wide"
-                                   @click.prevent='timeline()'>
+                                    <div data-role="tile" class="bg-cyan" @click.prevent='timeline()'>
                                         <span class="mif-list2 icon"></span>
                                         <span class="branding-bar">My Trips</span>
                                         <span class="badge-bottom">{{mytrips}}</span>
                                     </div>
+                               <!--     <div data-role="tile" style="background-color: #e08981" data-size="wide"
+                                   @click.prevent='timeline()'>
+                                        <span class="mif-list2 icon"></span>
+                                        <span class="branding-bar">My Trips</span>
+                                        <span class="badge-bottom">{{mytrips}}</span>
+                                    </div>-->
                                    <!-- <div data-role="tile" data-size="small">
                                         <span class="mif-apple icon"></span>
                                     </div>

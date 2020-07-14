@@ -47,7 +47,7 @@
       class="text-center shift"
       cols="12"
     >
-    <v-btn class="button fg-white" style="background-color: #ce5247"   @click.prevent='reg()'>It's my first time</v-btn>
+    <v-btn class="button fg-white" style="background-color: #ce5247"   @click.prevent='reg()'>My first time (Passenger)</v-btn>
     </div>
 
     </div>
