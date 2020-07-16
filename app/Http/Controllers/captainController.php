@@ -117,7 +117,7 @@ class captainController extends Controller
                return ['status'=>48,'time'=>$time];
            // }
 
-        }elseif(date("H") > 17){
+        }elseif(date("H") >= 17){
 
          $time = "evening";
          $check = checkin::where('userId','=', $userid)
