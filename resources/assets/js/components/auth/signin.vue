@@ -25,8 +25,9 @@
                 <input type="text" placeholder="First Name" name='Name' v-model='Name' class='mt-2' v-validate='"required|max:25"'/>
                 <p class='fg-red shake' v-show="errors.has('Name')">{{ errors.first('Name') }}</p>
                
-                <input type="password" placeholder="Password" v-model='pass' class='mt-2' name='Password' v-validate='"required"'/>
-                <p class='fg-red shake' v-show="errors.has('Password')">{{ errors.first('Password') }}</p>
+                <input :type="passwordFieldType" placeholder="Password" v-model='pass' class='mt-2' name='Password' v-validate='"required"'/>
+                <v-icon class='field-icon fg-white' @click="switchVisibility">remove_red_eye</v-icon>
+                 <p class='fg-red shake' v-show="errors.has('Password')">{{ errors.first('Password') }}</p>
             </div>
            
             <div class="form-group text-center">
@@ -58,13 +59,24 @@
     
     </template>
     
+
+    <style scoped>
+      .field-icon {
+   float: right;
+   margin-left: -25px;
+   margin-top: 10px;
+   position: relative;
+   z-index: 2;
+ }
+     </style>
     
     <script>
     export default {
         data(){
             return {
                Name:'',
-               pass:''
+               pass:'',
+               passwordFieldType: 'password'
             }
         },
         mounted(){
@@ -75,6 +87,10 @@
                             }
         },
         methods: {
+
+          switchVisibility() {
+      this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
+    },
             reg(){
                 var options = {
                                 showTop: true,

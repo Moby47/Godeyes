@@ -26,7 +26,7 @@
             <p class='fg-red shake' v-show="errors.has('Name')">{{ errors.first('Name') }}</p>
             <input type="text" placeholder="Last Name" name='Surname' v-model='Surname' class='mt-2' v-validate='"required|max:25"'/>
             <p class='fg-red shake' v-show="errors.has('Surname')">{{ errors.first('Surname') }}</p>
-            <input type="email" placeholder="Email" v-model='mail' class='mt-2' name='Email' v-validate='"required|email|max:100"'/>
+            <input type="email" placeholder="Personal Email" v-model='mail' class='mt-2' name='Email' v-validate='"required|email|max:100"'/>
             <p class='fg-red shake' v-show="errors.has('Email')">{{ errors.first('Email') }}</p>
             <input type="password" placeholder="Password" v-model='pass' class='mt-2' name='Password' v-validate='"required"'/>
             <p class='fg-red shake' v-show="errors.has('Password')">{{ errors.first('Password') }}</p>

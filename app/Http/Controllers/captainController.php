@@ -117,7 +117,7 @@ class captainController extends Controller
                return ['status'=>48,'time'=>$time];
            // }
 
-        }elseif(date("H") >= 17){
+        }elseif(date("H") >= 16){
 
          $time = "evening";
          $check = checkin::where('userId','=', $userid)
@@ -147,14 +147,14 @@ class captainController extends Controller
 
     public function allLogs($fullname){
         $log = checkin::where('captain','=',$fullname)
-        ->select('id','name','surname','created_at','captain','time')->paginate(10);
+        ->select('id','name','surname','created_at','captain','time')->paginate(5);
         return checkinres::collection($log);  
     }
 
 
     public function allLogsFiltered($from,$to,$fullname){
         $log = checkin::where('captain','=',$fullname)
-        ->whereBetween('created_at',[$from,$to])->select('id','name','surname','created_at','captain','time')->paginate(1);
+        ->whereBetween('created_at',[$from,$to])->select('id','name','surname','created_at','captain','time')->paginate(5);
         return checkinres::collection($log);  
     }
 

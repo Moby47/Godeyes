@@ -69,7 +69,7 @@ class riderController extends Controller
                return ['status'=>48,'time'=>$time];
            // }
 
-        }elseif(date("H") >= 17){
+        }elseif(date("H") >= 16){
 
          $time = "evening";
          $check = checkin::where('userId','=', $request->input('id'))
