@@ -103,7 +103,7 @@
                                 showTop: true,
                             }
                          Metro.toast.create('That page is for bus captains only!',
-                         null, 5000, 'yellow', options);
+                         null, 5000, 'info', options);
                                 this.$router.push({name: "index"});
                             }
 
@@ -202,7 +202,7 @@
                           console.log(res.data[0]);
                           if(res.data[0] == undefined){
                             Metro.toast.create('No records found',
-                         null, 5000, 'yellow', options);
+                         null, 5000, 'info', options);
                           }else{
                               this.empty = false;
                           }
@@ -245,7 +245,7 @@
                           console.log(res.data[0]);
                           if(res.data[0] == undefined){
                             Metro.toast.create('No records yet',
-                         null, 5000, 'yellow', options);
+                         null, 5000, 'info', options);
                           }else{
                               this.empty = false;
                           }

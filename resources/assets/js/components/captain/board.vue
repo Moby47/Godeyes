@@ -85,7 +85,7 @@
                                 showTop: true,
                             }
                          Metro.toast.create('That page is for bus captains only!',
-                         null, 5000, 'yellow', options);
+                         null, 5000, 'info', options);
                                 this.$router.push({name: "index"});
                             }else{
                                 //auth
@@ -93,7 +93,7 @@
                                 showTop: true,
                             }
                          Metro.toast.create('Hi captain, Please contact Admin for login details',
-                         null, 5000, 'success', options);
+                         null, 5000, 'info', options);
                                 this.$router.push({name: "signin"});
                             }
 

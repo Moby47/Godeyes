@@ -96,7 +96,7 @@
                                 showTop: true,
                             }
                              Metro.toast.create('LOL. ok, start here...',
-                         null, 5000, 'success', options);
+                         null, 5000, 'info', options);
                 this.$router.push({name: "reg"});
                },
     
@@ -120,7 +120,7 @@
                                 }
                              if(result == 2){
                                 Metro.toast.create('Invalid credentials. Refresh and try again',
-                                 null, 9000, 'yellow', options);
+                                 null, 9000, 'alert', options);
                                  Metro.activity.close(activity);
                               }else{
                                

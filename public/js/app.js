@@ -76411,7 +76411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     showTop: true
                                 };
                                 if (result == 2) {
-                                    Metro.toast.create('Invalid credentials. Refresh and try again', null, 9000, 'yellow', options);
+                                    Metro.toast.create('Invalid credentials. Refresh and try again', null, 9000, 'alert', options);
                                     Metro.activity.close(activity);
                                 } else {
 
@@ -76918,7 +76918,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var options = {
         showTop: true
       };
-      Metro.toast.create('LOL. ok, start here...', null, 5000, 'success', options);
+      Metro.toast.create('LOL. ok, start here...', null, 5000, 'info', options);
       this.$router.push({ name: "reg" });
     },
     ok: function ok() {
@@ -76941,7 +76941,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               showTop: true
             };
             if (result == 2) {
-              Metro.toast.create('Invalid credentials. Refresh and try again', null, 9000, 'yellow', options);
+              Metro.toast.create('Invalid credentials. Refresh and try again', null, 9000, 'alert', options);
               Metro.activity.close(activity);
             } else {
 
@@ -79064,7 +79064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var options = {
         showTop: true
       };
-      Metro.toast.create('That page is for bus captains only!', null, 5000, 'yellow', options);
+      Metro.toast.create('That page is for bus captains only!', null, 5000, 'info', options);
       this.$router.push({ name: "index" });
     }
 
@@ -79157,7 +79157,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           //to determine if obj is empty 
         };console.log(res.data[0]);
         if (res.data[0] == undefined) {
-          Metro.toast.create('No records found', null, 5000, 'yellow', options);
+          Metro.toast.create('No records found', null, 5000, 'info', options);
         } else {
           _this.empty = false;
         }
@@ -79195,7 +79195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           //to determine if obj is empty 
         };console.log(res.data[0]);
         if (res.data[0] == undefined) {
-          Metro.toast.create('No records yet', null, 5000, 'yellow', options);
+          Metro.toast.create('No records yet', null, 5000, 'info', options);
         } else {
           _this2.empty = false;
         }

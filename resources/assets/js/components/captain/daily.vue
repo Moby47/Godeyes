@@ -75,7 +75,7 @@
                                 showTop: true,
                             }
                          Metro.toast.create('That page is for bus captains only!',
-                         null, 5000, 'yellow', options);
+                         null, 5000, 'info', options);
                                 this.$router.push({name: "index"});
                             }
 

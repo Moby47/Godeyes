@@ -88,7 +88,7 @@ export default {
         switchVisibility() {
       this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
     },
-    
+
         back(){
                   this.$router.go(-1)
            },
@@ -121,7 +121,7 @@ export default {
                             }
                          if(result == 2){
                             Metro.toast.create('Invalid credentials. Refresh and try again',
-                             null, 9000, 'yellow', options);
+                             null, 9000, 'alert', options);
                              Metro.activity.close(activity);
                           }else{
                            

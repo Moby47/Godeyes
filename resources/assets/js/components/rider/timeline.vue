@@ -124,7 +124,7 @@
                           if(res.data[0] == undefined){
                           //  alert('No records yet')
                             Metro.toast.create('No records yet',
-                         null, 5000, 'yellow', options);
+                         null, 5000, 'info', options);
                            // this.$router.push({name: "checkIn"});
                           }else{
                               this.empty = false;
