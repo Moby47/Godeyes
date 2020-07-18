@@ -135,11 +135,16 @@ export default {
                                var options = {
                                 showTop: true,
                             }
-                             Metro.toast.create('You are ready, continue...',
-                         null, 5000, 'success', options);
-
                                Metro.activity.close(activity);
-                               this.$router.push({name: "index"});
+                               if(Metro.session.getItem('state') == 1){
+                                    this.$router.push({name: "board"});
+                                   }else if(Metro.session.getItem('state') == 0){
+                                    this.$router.push({name: "rider"});
+                                   }else{
+                                      Metro.toast.create('You are you, please proceed...',
+                                 null, 9000, 'success', options);
+                                 this.$router.push({name: "index"});
+                                   }
                           }
                     })
                     .catch(error =>{

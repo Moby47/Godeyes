@@ -131,12 +131,18 @@
                                    Metro.session.setItem('surname',res.data.surname);
                                    Metro.session.setItem('state',res.data.state);
                                    
-
-                                   Metro.toast.create('You are you, please proceed...',
-                                 null, 9000, 'success', options);
-
                                    Metro.activity.close(activity);
-                                   this.$router.push({name: "index"});
+
+                                   if(Metro.session.getItem('state') == 1){
+                                    this.$router.push({name: "board"});
+                                   }else if(Metro.session.getItem('state') == 0){
+                                    this.$router.push({name: "rider"});
+                                   }else{
+                                      Metro.toast.create('You are you, please proceed...',
+                                 null, 9000, 'success', options);
+                                 this.$router.push({name: "index"});
+                                   }
+                                   
                               }
                         })
                         .catch(error =>{
