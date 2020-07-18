@@ -13,6 +13,7 @@ import checkIn from './components/rider/checkIn.vue'
 import rider from './components/rider/rider.vue'
 import success from './components/rider/success.vue'
 import timeline from './components/rider/timeline.vue'
+import dailyRec from './components/rider/dailyRec.vue'
 
 import daily from './components/captain/daily.vue'
 import alltime from './components/captain/alltime.vue'
@@ -76,6 +77,14 @@ export default new Router({
             path: '/time-line',
             name: 'timeline',
             component: timeline,
+             meta:{
+                auth: true
+            }
+        },
+        {
+            path: '/view-daily-records',
+            name: 'dailyRec',
+            component: dailyRec,
              meta:{
                 auth: true
             }

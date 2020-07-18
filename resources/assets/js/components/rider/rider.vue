@@ -26,12 +26,12 @@
                                         <span class="branding-bar">My Trips</span>
                                         <span class="badge-bottom">{{mytrips}}</span>
                                     </div>
-                               <!--     <div data-role="tile" style="background-color: #e08981" data-size="wide"
-                                   @click.prevent='timeline()'>
-                                        <span class="mif-list2 icon"></span>
-                                        <span class="branding-bar">My Trips</span>
-                                        <span class="badge-bottom">{{mytrips}}</span>
-                                    </div>-->
+                                   <div data-role="tile" style="background-color: #e08981" data-size="wide"
+                                   @click.prevent='daily()'>
+                                        <span class="mif-cloudy icon"></span>
+                                        <span class="branding-bar">Trips Today</span>
+                                       <!-- <span class="badge-bottom">{{mytrips}}</span>-->
+                                    </div>
                                    <!-- <div data-role="tile" data-size="small">
                                         <span class="mif-apple icon"></span>
                                     </div>
@@ -108,7 +108,7 @@
                 this.$router.push({name: "timeline"});
             },
             daily(){
-             this.$router.push({name: "daily"});
+             this.$router.push({name: "dailyRec"});
             },
 
        /*      getMorningCount(){

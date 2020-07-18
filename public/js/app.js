@@ -32994,7 +32994,7 @@ __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */].beforeEach(function (to
             var options = {
                 showTop: true
             };
-            Metro.toast.create('Please confirm your details', null, 5000, 'success', options);
+            Metro.toast.create('Please confirm your details', null, 5000, 'info', options);
 
             next({ path: '/signin' });
         } //inner if close
@@ -73471,21 +73471,24 @@ var install = VeeValidate$1.install;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_rider_success_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_rider_success_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_rider_timeline_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_captain_daily_vue__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_captain_daily_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_captain_daily_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_captain_board_vue__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_captain_board_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_captain_board_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_captain_addRider_vue__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_captain_addRider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_captain_addRider_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_notfound_vue__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_notfound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_notfound_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_rider_dailyRec_vue__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_rider_dailyRec_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_rider_dailyRec_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_daily_vue__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_captain_daily_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_captain_daily_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_captain_alltime_vue__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_captain_alltime_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_captain_alltime_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_captain_board_vue__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_captain_board_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_captain_board_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_captain_addRider_vue__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_captain_addRider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_captain_addRider_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_notfound_vue__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_notfound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_notfound_vue__);
 
 
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+
 
 
 
@@ -73556,37 +73559,44 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
             auth: true
         }
     }, {
+        path: '/view-daily-records',
+        name: 'dailyRec',
+        component: __WEBPACK_IMPORTED_MODULE_9__components_rider_dailyRec_vue___default.a,
+        meta: {
+            auth: true
+        }
+    }, {
         path: '/daily-records',
         name: 'daily',
-        component: __WEBPACK_IMPORTED_MODULE_9__components_captain_daily_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_10__components_captain_daily_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '/alltime-records',
         name: 'alltime',
-        component: __WEBPACK_IMPORTED_MODULE_10__components_captain_alltime_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_11__components_captain_alltime_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '/board',
         name: 'board',
-        component: __WEBPACK_IMPORTED_MODULE_11__components_captain_board_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_12__components_captain_board_vue___default.a,
         meta: {
             // auth: true
         }
     }, {
         path: '/add-rider',
         name: 'addRider',
-        component: __WEBPACK_IMPORTED_MODULE_12__components_captain_addRider_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_13__components_captain_addRider_vue___default.a,
         meta: {
             //  auth: true
         }
     }, {
         path: '*',
         name: 'notfound',
-        component: __WEBPACK_IMPORTED_MODULE_13__components_notfound_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_14__components_notfound_vue___default.a,
         meta: {}
     }]
 }));
@@ -78291,7 +78301,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$router.push({ name: "timeline" });
         },
         daily: function daily() {
-            this.$router.push({ name: "daily" });
+            this.$router.push({ name: "dailyRec" });
         },
 
 
@@ -78407,6 +78417,27 @@ var render = function() {
                       _vm._v(" "),
                       _c("span", { staticClass: "badge-bottom" }, [
                         _vm._v(_vm._s(_vm.mytrips))
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticStyle: { "background-color": "#e08981" },
+                      attrs: { "data-role": "tile", "data-size": "wide" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.daily()
+                        }
+                      }
+                    },
+                    [
+                      _c("span", { staticClass: "mif-cloudy icon" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "branding-bar" }, [
+                        _vm._v("Trips Today")
                       ])
                     ]
                   )
@@ -107939,6 +107970,480 @@ webpackContext.id = 227;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(237)
+/* template */
+var __vue_template__ = __webpack_require__(238)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/rider/dailyRec.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ca00b0fa", Component.options)
+  } else {
+    hotAPI.reload("data-v-ca00b0fa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 237 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            morning: [],
+            evening: [],
+            morningC: '',
+            eveningC: '',
+            captainFullname: '',
+            content: []
+        };
+    },
+    mounted: function mounted() {
+        this.getCaptains();
+    },
+
+    methods: {
+        getCaptains: function getCaptains() {
+            var _this = this;
+
+            var activity = Metro.activity.open({
+                type: 'cycle',
+                overlayClickClose: false,
+                text: '<div class=\'mt-2 text-small fg-white\'>Getting Captains...</div>'
+            });
+            fetch('/api/get-captains').then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this.content = res.data;
+                console.log(_this.content);
+                Metro.activity.close(activity);
+                /*to determine if obj is empty 
+                        console.log(res.data[0]);
+                        if(res.data[0] == undefined){
+                            this.empty = true;
+                        }else{
+                            this.empty = false;
+                        }
+                to determine if obj is empty*/
+            }).catch(function (error) {
+                console.log(error);
+                //off loader
+
+                Metro.toast.create('A temporary network error occured... Please reload page', null, 5000, 'yellow');
+                Metro.activity.close(activity);
+            });
+        },
+        getMorning: function getMorning() {
+            var _this2 = this;
+
+            var activity = Metro.activity.open({
+                type: 'cycle',
+                overlayClickClose: false,
+                text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>'
+            });
+            fetch('/api/morning' + '/' + this.captainFullname).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this2.morning = res.data;
+                Metro.activity.close(activity);
+            }).catch(function (error) {
+                console.log(error);
+                Metro.activity.close(activity);
+            });
+        },
+        getEvening: function getEvening() {
+            var _this3 = this;
+
+            var activity2 = Metro.activity.open({
+                type: 'cycle',
+                overlayClickClose: false,
+                text: '<div class=\'mt-2 text-small fg-white\'>Loading...</div>'
+            });
+            fetch('/api/evening' + '/' + this.captainFullname).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this3.evening = res.data;
+                Metro.activity.close(activity2);
+            }).catch(function (error) {
+                console.log(error);
+                Metro.activity.close(activity2);
+            });
+        },
+        getMorningCount: function getMorningCount() {
+            var _this4 = this;
+
+            fetch('/api/morning-count' + '/' + this.captainFullname).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this4.morningC = res;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getEveningCount: function getEveningCount() {
+            var _this5 = this;
+
+            fetch('/api/evening-count' + '/' + this.captainFullname).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this5.eveningC = res;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+
+    watch: {
+        captainFullname: function captainFullname(a, b) {
+            if (a) {
+
+                this.getMorning();
+                this.getEvening();
+                this.getMorningCount();
+                this.getEveningCount();
+            }
+        }
+    } //watcher
+});
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "centered slideUp" },
+        [
+          _c("h4", { staticClass: "text-center sub-font-fam" }, [
+            _vm._v("Check-Ins Today")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "centered slideUp" }, [
+            _c("p", { staticClass: "text-center" }, [
+              _vm._v("Select Bus Captain / Route")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "cell flex-align-self-start" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "cell flex-align-self-center" }, [
+                _c("form", [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.captainFullname,
+                            expression: "captainFullname"
+                          },
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required",
+                            expression: '"required"'
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "Captain", id: "force-select" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.captainFullname = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      _vm._l(_vm.content, function(con) {
+                        return _c(
+                          "option",
+                          {
+                            key: con.id,
+                            domProps: { value: con.name + " " + con.surname }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(con.name) +
+                                " " +
+                                _vm._s(con.surname) +
+                                " - " +
+                                _vm._s(con.route)
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "cell flex-align-self-end" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.captainFullname,
+                  expression: "captainFullname"
+                }
+              ],
+              staticClass: "mx-auto mt-3",
+              attrs: { "max-width": "344" }
+            },
+            [
+              _c("b", { staticClass: "headline mb-1 ml-1" }, [
+                _vm._v("Morning")
+              ]),
+              _vm._v(" "),
+              _c("h4", [
+                _c("span", { staticClass: "badge bg-green fg-white" }, [
+                  _vm._v(_vm._s(_vm.morningC))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                _vm._l(_vm.morning, function(con) {
+                  return _c("v-card-text", { key: con.id }, [
+                    _c("div", [
+                      _vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))
+                    ]),
+                    _vm._v(" "),
+                    _c("small", [
+                      _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
+                    ])
+                  ])
+                }),
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.captainFullname,
+                  expression: "captainFullname"
+                }
+              ],
+              staticClass: "mx-auto mt-3",
+              attrs: { "max-width": "344" }
+            },
+            [
+              _c("p", { staticClass: "headline mb-1 ml-1" }, [
+                _vm._v("Evening")
+              ]),
+              _vm._v(" "),
+              _c("h4", [
+                _c("span", { staticClass: "badge bg-green fg-white" }, [
+                  _vm._v(_vm._s(_vm.eveningC))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                _vm._l(_vm.evening, function(con) {
+                  return _c("v-card-text", { key: con.id }, [
+                    _c("div", [
+                      _vm._v(_vm._s(con.name) + " " + _vm._s(con.surname))
+                    ]),
+                    _vm._v(" "),
+                    _c("small", [
+                      _vm._v(_vm._s(_vm._f("formatDate")(con.created_at)))
+                    ])
+                  ])
+                }),
+                1
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("floating")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-start" }, [
+      _c("div", { staticClass: "dark-shade" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ca00b0fa", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

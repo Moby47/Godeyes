@@ -65,7 +65,7 @@ if(Metro.session.getItem('token')){
       showTop: true,
   }
    Metro.toast.create('Please confirm your details',
-null, 5000, 'success', options);
+null, 5000, 'info', options);
 
     next({path: '/signin'})
 } //inner if close
