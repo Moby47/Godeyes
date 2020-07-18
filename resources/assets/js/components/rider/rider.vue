@@ -91,8 +91,8 @@
 
          this.name = Metro.session.getItem('name')
 
-         this.getMorningCount()
-         this.getEveningCount()
+       //  this.getMorningCount()
+       //  this.getEveningCount()
 
          this.getTimelineCount()
          
@@ -111,7 +111,7 @@
              this.$router.push({name: "daily"});
             },
 
-             getMorningCount(){
+       /*      getMorningCount(){
                 fetch('/api/morning-count')
             .then(res => res.json())
             .then(res=>{
@@ -132,7 +132,7 @@
             .catch(error =>{
               console.log(error)
                 })
-         },
+         },*/
         
          getTimelineCount(){
                 fetch('/api/logs-count'+'/'+Metro.session.getItem('id'))

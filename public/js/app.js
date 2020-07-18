@@ -78180,8 +78180,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.name = Metro.session.getItem('name');
 
-        this.getMorningCount();
-        this.getEveningCount();
+        //  this.getMorningCount()
+        //  this.getEveningCount()
 
         this.getTimelineCount();
     },
@@ -78197,35 +78197,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         daily: function daily() {
             this.$router.push({ name: "daily" });
         },
-        getMorningCount: function getMorningCount() {
-            var _this = this;
 
-            fetch('/api/morning-count').then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                _this.today = _this.today + res;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        getEveningCount: function getEveningCount() {
-            var _this2 = this;
 
-            fetch('/api/evening-count').then(function (res) {
-                return res.json();
-            }).then(function (res) {
-                _this2.today = _this2.today + res;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
+        /*      getMorningCount(){
+                 fetch('/api/morning-count')
+             .then(res => res.json())
+             .then(res=>{
+                this.today =  this.today + res;
+             })
+             .catch(error =>{
+               console.log(error)
+                 })
+          },
+            getEveningCount(){
+                 fetch('/api/evening-count')
+             .then(res => res.json())
+             .then(res=>{
+                this.today =  this.today + res;
+             })
+             .catch(error =>{
+               console.log(error)
+                 })
+          },*/
+
         getTimelineCount: function getTimelineCount() {
-            var _this3 = this;
+            var _this = this;
 
             fetch('/api/logs-count' + '/' + Metro.session.getItem('id')).then(function (res) {
                 return res.json();
             }).then(function (res) {
-                _this3.mytrips = res;
+                _this.mytrips = res;
             }).catch(function (error) {
                 console.log(error);
             });
@@ -80054,8 +80055,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$router.push({ name: "signin" });
         }
 
-        //this.getMorningCount()
-        // this.getEveningCount()
+        this.getMorningCount();
+        this.getEveningCount();
     },
 
     methods: {
@@ -80083,7 +80084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getMorningCount: function getMorningCount() {
             var _this = this;
 
-            fetch('/api/morning-count').then(function (res) {
+            fetch('/api/morning-count/' + Metro.session.getItem('name') + ' ' + Metro.session.getItem('surname')).then(function (res) {
                 return res.json();
             }).then(function (res) {
                 _this.today = _this.today + res;
@@ -80094,7 +80095,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getEveningCount: function getEveningCount() {
             var _this2 = this;
 
-            fetch('/api/evening-count').then(function (res) {
+            fetch('/api/evening-count/' + Metro.session.getItem('name') + ' ' + Metro.session.getItem('surname')).then(function (res) {
                 return res.json();
             }).then(function (res) {
                 _this2.today = _this2.today + res;
@@ -80164,6 +80165,10 @@ var render = function() {
                       _vm._v(" "),
                       _c("span", { staticClass: "branding-bar" }, [
                         _vm._v("Today's Records")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "badge-bottom" }, [
+                        _vm._v(_vm._s(_vm.today))
                       ])
                     ]
                   ),

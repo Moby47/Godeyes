@@ -21,7 +21,7 @@
                                             data-role="tile" style="background-color: #3b6b63">
                                         <span class="mif-cloudy icon"></span>
                                         <span class="branding-bar">Today's Records</span>
-                                      <!--  <span class="badge-bottom">{{today}}</span>-->
+                                        <span class="badge-bottom">{{today}}</span>
                             </div>
                                     <div data-role="tile" class="bg-cyan" @click.prevent="alltime()">
                                         <span class="mif-database icon"></span>
@@ -97,8 +97,8 @@
                                 this.$router.push({name: "signin"});
                             }
 
-         //this.getMorningCount()
-        // this.getEveningCount()
+         this.getMorningCount()
+         this.getEveningCount()
         },
         methods: {
             rider(){
@@ -126,7 +126,7 @@
             },
         
           getMorningCount(){
-                fetch('/api/morning-count')
+                fetch('/api/morning-count/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname'))
             .then(res => res.json())
             .then(res=>{
                this.today =  this.today + res;
@@ -138,7 +138,7 @@
 
 
          getEveningCount(){
-                fetch('/api/evening-count')
+                fetch('/api/evening-count/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname'))
             .then(res => res.json())
             .then(res=>{
                this.today =  this.today + res;
