@@ -26,7 +26,7 @@
                 <p class='fg-red shake' v-show="errors.has('Name')">{{ errors.first('Name') }}</p>
                
                 <input :type="passwordFieldType" placeholder="Password" v-model='pass' class='mt-2' name='Password' v-validate='"required"'/>
-                <v-icon class='field-icon fg-white' @click="switchVisibility">remove_red_eye</v-icon>
+                <v-icon class='field-icon' @click="switchVisibility">remove_red_eye</v-icon>
                  <p class='fg-red shake' v-show="errors.has('Password')">{{ errors.first('Password') }}</p>
             </div>
            
@@ -64,7 +64,7 @@
       .field-icon {
    float: right;
    margin-left: -25px;
-   margin-top: 10px;
+   margin-top: -25px;
    position: relative;
    z-index: 2;
  }

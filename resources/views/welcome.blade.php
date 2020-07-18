@@ -52,7 +52,7 @@
         <script src="{{asset('/js/app.js')}}"></script>
 
         <script>
-          // Initialize the service worker
+        /*  // Initialize the service worker
           if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sWDog.js', {
               scope: '.' 
@@ -63,7 +63,7 @@
               // registration failed :(
               console.log('ServiceWorker registration failed: ', err);
             });
-          }
+          }*/
         </script>
 
 <script>

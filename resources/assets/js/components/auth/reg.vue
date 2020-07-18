@@ -28,7 +28,8 @@
             <p class='fg-red shake' v-show="errors.has('Surname')">{{ errors.first('Surname') }}</p>
             <input type="email" placeholder="Personal Email" v-model='mail' class='mt-2' name='Email' v-validate='"required|email|max:100"'/>
             <p class='fg-red shake' v-show="errors.has('Email')">{{ errors.first('Email') }}</p>
-            <input type="password" placeholder="Password" v-model='pass' class='mt-2' name='Password' v-validate='"required"'/>
+            <input :type="passwordFieldType" placeholder="Password" v-model='pass' class='mt-2' name='Password' v-validate='"required"'/>
+            <v-icon class='field-icon' @click="switchVisibility">remove_red_eye</v-icon>
             <p class='fg-red shake' v-show="errors.has('Password')">{{ errors.first('Password') }}</p>
         </div>
        
@@ -54,6 +55,15 @@
 
 </template>
 
+<style scoped>
+    .field-icon {
+ float: right;
+ margin-left: -25px;
+ margin-top: -25px;
+ position: relative;
+ z-index: 2;
+}
+   </style>
 
 <script>
 export default {
@@ -62,7 +72,8 @@ export default {
            Name:'',
            Surname:'',
            mail:'',
-           pass:''
+           pass:'',
+           passwordFieldType: 'password'
         }
     },
     mounted(){
@@ -73,6 +84,11 @@ export default {
                         }
     },
     methods: {
+
+        switchVisibility() {
+      this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
+    },
+    
         back(){
                   this.$router.go(-1)
            },
