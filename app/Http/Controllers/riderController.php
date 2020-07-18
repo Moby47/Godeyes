@@ -7,6 +7,9 @@ use App\rider;
 use App\User;
 use App\checkin;
 
+use Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
+
 use App\Http\Resources\checkinResource as checkinres;
 
 class riderController extends Controller
@@ -140,4 +143,25 @@ class riderController extends Controller
         return checkinres::collection($res);   
     }
  
+
+    public function exportMyTrips($id) 
+    {
+          session(['id' => $id]);
+          return Excel::download(new DataExport, 'My_Shuttlers_Trip_history.xlsx');
+
+    }
+
+
+}
+
+
+
+class DataExport implements FromCollection{
+    function collection()
+    {
+         $id =  session('id');
+
+  return  $data = checkin::where('userId','=', $id)
+ ->select('name','surname','captain','created_at','time')->get();
+    }
 }

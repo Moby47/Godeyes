@@ -63,7 +63,27 @@
 
     </div>
     
-    
+    <template>
+      <div>
+         <a @click.prevent='exportExcel()' >	
+         <v-btn 
+         fab 
+         dark
+         color=#e08981
+         small
+         relative
+         outlined
+         top
+         right
+         fixed
+           >
+           <v-icon dark > import_export </v-icon> 
+         </v-btn>
+              </a>
+  
+              </div>
+          </template>    
+
     <floating></floating>
     
     </div>
@@ -96,6 +116,40 @@
          // this.name = Metro.session.getItem('name')
         },
         methods: {
+
+          exportExcel(){
+
+            var dia = confirm('Export your trip history?')
+            if(dia){
+              var activity =  Metro.activity.open({
+                    type: 'cycle',
+                    overlayClickClose: false,
+                    text: '<div class=\'mt-2 text-small fg-white\'>Exporting...</div>',
+                })
+
+                axios({
+                url: '/api/export-my-trips' +'/'+Metro.session.getItem('id'),
+                method: 'GET',
+                responseType: 'blob', // important
+              }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'My_Shuttlers_Trip_history.xlsx'); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+                Metro.activity.close(activity);
+              });
+            }else{
+              var options = {
+                      showTop: true,
+                            }
+              Metro.toast.create('Come back anytime',
+               null, 4000, 'info', options);
+            }
+
+          },
+
             more(){
                       
                      alert("Feature Under Maintenance")

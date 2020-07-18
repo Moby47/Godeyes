@@ -29,7 +29,7 @@ Route::Get('/month/{id}', 'riderController@month');
 Route::Get('/total/{id}', 'riderController@total');
 Route::Get('/success-data/{id}', 'riderController@success');
 Route::Get('/logs-count/{id}', 'riderController@logsCount');
-
+Route::get('/export-my-trips/{id}', 'riderController@exportMyTrips')->name('exportMine');
 
 
 Route::Post('/add-captain', 'captainController@addCaptain');
