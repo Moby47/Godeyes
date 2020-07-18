@@ -206,6 +206,13 @@ class captainController extends Controller
     }
 
 
+    public function dailyExport($fullname) 
+    {
+        session(['fullname' => $fullname]);
+          return Excel::download(new DailyExport, 'Shuttler_passengers'.'_'.date("Y-m-d").'_'.'.xlsx');
+
+    }
+
 }
 
 
@@ -220,4 +227,16 @@ class DataExport implements FromCollection{
       ->whereBetween('created_at',[$from,$to])
      ->select('name','surname','captain','created_at','time')->get();//->toArray();
         }
+}
+
+
+class DailyExport implements FromCollection{
+    function collection()
+    {
+        $fullname = session('fullname');
+
+   return     $check = checkin::where('captain','=',$fullname)
+        ->where('custom_date','=', date("Y-m-d"))
+        ->select('name','surname','captain','created_at','time')->get();  
+    }
 }

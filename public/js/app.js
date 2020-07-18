@@ -79646,6 +79646,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -79672,6 +79674,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   methods: {
+    excelDaily: function excelDaily() {
+
+      var activity = Metro.activity.open({
+        type: 'cycle',
+        overlayClickClose: false,
+        text: '<div class=\'mt-2 text-small fg-white\'>Exporting...</div>'
+      });
+
+      axios({
+        url: '/api/daily-export' + '/' + Metro.session.getItem('name') + ' ' + Metro.session.getItem('surname'),
+        method: 'GET',
+        responseType: 'blob' // important
+      }).then(function (response) {
+        var url = window.URL.createObjectURL(new Blob([response.data]));
+        var link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'Shuttler_passengers_' + new Date() + '_.xlsx'); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+        Metro.activity.close(activity);
+      });
+    },
     excelFile: function excelFile() {
       if (this.to == '' || this.from == '') {
         var options = {
@@ -79973,7 +79997,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "text-center" }, [
-                  _c("ul", { staticClass: "pagination mb-5" }, [
+                  _c("ul", { staticClass: "pagination" }, [
                     _c("li", { staticClass: "page-item" }, [
                       _c(
                         "a",
@@ -80046,6 +80070,23 @@ var render = function() {
                   "div",
                   { staticClass: "form-group text-center" },
                   [
+                    _c("p", [_vm._v("Export Records")]),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        staticClass: "button fg-white",
+                        attrs: { color: "green" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.excelDaily()
+                          }
+                        }
+                      },
+                      [_vm._v("Today")]
+                    ),
+                    _vm._v(" "),
                     _c(
                       "v-btn",
                       {
@@ -80058,7 +80099,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Export")]
+                      [_vm._v("Custom")]
                     )
                   ],
                   1

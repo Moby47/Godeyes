@@ -58,7 +58,7 @@
                 </table>
 
  <div class='text-center'>
-       <ul class="pagination mb-5">
+       <ul class="pagination">
                             <li class="page-item"><a class="page-link" href="#" @click.prevent="get(pagination.prev_page_url)" v-show="pagination.prev_page_url"> Prev </a></li>
 
                             <li class="page-item"><a class="page-link" href="#"><span>{{pagination.current_page}} of {{pagination.last_page}}</span></a></li>
@@ -68,7 +68,9 @@
                        
   </div>
                 <div class="form-group text-center">
-                        <v-btn class="button fg-white" color="green" @click.prevent="excelFile()">Export</v-btn>
+                  <p>Export Records</p>
+                    <v-btn class="button fg-white" color="green" @click.prevent="excelDaily()">Today</v-btn>
+                        <v-btn class="button fg-white" color="green" @click.prevent="excelFile()">Custom</v-btn>
                     </div>
 
  </v-card>         
@@ -111,6 +113,30 @@
         },
 
         methods: {
+
+excelDaily(){
+  
+  var activity =  Metro.activity.open({
+                    type: 'cycle',
+                    overlayClickClose: false,
+                    text: '<div class=\'mt-2 text-small fg-white\'>Exporting...</div>',
+                })
+
+                axios({
+                url: '/api/daily-export' +'/'+Metro.session.getItem('name')+' '+Metro.session.getItem('surname'),
+                method: 'GET',
+                responseType: 'blob', // important
+              }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'Shuttler_passengers_'+new Date()+'_.xlsx'); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+                Metro.activity.close(activity);
+              });
+},
+
 
             excelFile(){
                 if(this.to == ''  || this.from == ''){
