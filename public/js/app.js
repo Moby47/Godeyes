@@ -76286,11 +76286,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            passenger: true
+            passenger: true,
+            icon: 'power',
+            btnColor: '#28a745'
         };
     },
     mounted: function mounted() {
@@ -76298,9 +76320,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (state == 1) {
             this.passenger = false;
         }
+        this.isAuth();
     },
 
     methods: {
+        out: function out() {
+
+            if (this.isAuth()) {
+                //logout
+                var activity = Metro.activity.open({
+                    type: 'cycle',
+                    overlayClickClose: false,
+                    text: '<div class=\'mt-2 text-small fg-white\'>Signing off...</div>'
+                });
+                Metro.session.delItem('token');
+                Metro.session.delItem('id');
+                Metro.session.delItem('name');
+                Metro.session.delItem('surname');
+                Metro.session.delItem('state');
+                this.isAuth();
+                Metro.activity.close(activity);
+            } else {
+                //not auth, go to login
+                this.$router.push({ name: "signin" });
+            }
+        },
+        isAuth: function isAuth() {
+            if (Metro.session.getItem('token')) {
+                this.btnColor = '#dc3545';
+                this.icon = 'power_off';
+                return true;
+            } else {
+                this.btnColor = '#28a745';
+                this.icon = 'power';
+                return false;
+            }
+        },
         rider: function rider() {
 
             this.$router.push({ name: "rider" });
@@ -76447,9 +76502,50 @@ var render = function() {
             ])
           ]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      [
+        _c("div", [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.out()
+                }
+              }
+            },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: {
+                    fab: "",
+                    dark: "",
+                    color: _vm.btnColor,
+                    small: "",
+                    relative: "",
+                    outlined: "",
+                    bottom: "",
+                    right: "",
+                    fixed: ""
+                  }
+                },
+                [
+                  _c("v-icon", { attrs: { dark: "" } }, [
+                    _vm._v(" " + _vm._s(_vm.icon) + " ")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []

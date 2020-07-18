@@ -57,6 +57,26 @@
   </v-footer>
 
 
+  <template>
+    <div>
+            <a @click.prevent='out()' >	
+			 <v-btn 
+			 fab 
+			 dark
+			 :color=btnColor
+			 small
+             relative
+             outlined
+			 bottom
+			 right
+			 fixed
+			   >
+               <v-icon dark > {{icon}} </v-icon> 
+			 </v-btn>
+            </a>
+
+            </div>
+        </template>     
 </div>
 
 </template>
@@ -66,7 +86,9 @@
 export default {
     data(){
         return {
-           passenger:true
+           passenger:true,
+           icon:'power',
+           btnColor:'#28a745'
         }
     },
     mounted(){
@@ -74,8 +96,44 @@ export default {
                             if(state == 1){
                                 this.passenger = false
                             }
+        this.isAuth()
     },
     methods: {
+
+        out(){
+            
+            if(this.isAuth()){
+                //logout
+                var activity =  Metro.activity.open({
+                    type: 'cycle',
+                    overlayClickClose: false,
+                    text: '<div class=\'mt-2 text-small fg-white\'>Signing off...</div>',
+                })
+                Metro.session.delItem('token');
+                                   Metro.session.delItem('id');
+                                   Metro.session.delItem('name');
+                                   Metro.session.delItem('surname');
+                                   Metro.session.delItem('state');
+                    this.isAuth()
+                   Metro.activity.close(activity);
+            }else{
+                //not auth, go to login
+                this.$router.push({name: "signin"});
+            }
+        },
+
+        isAuth(){
+          if(Metro.session.getItem('token')){
+            this.btnColor ='#dc3545'
+            this.icon = 'power_off'
+          return true;
+         }else{
+            this.btnColor ='#28a745'
+            this.icon = 'power'
+         return false;
+        }
+        },
+
         rider(){
          
         this.$router.push({name: "rider"});
