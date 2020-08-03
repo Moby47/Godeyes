@@ -12,9 +12,9 @@ var filesToCache = [
   
 
   
-  '/images/fav/apple-touch-icon.png',
-  '/images/fav/favicon-32x32.png',
-  '/images/fav/favicon-16x16.png',
+  '/images/fav2/apple-touch-icon.png',
+  '/images/fav2/favicon-32x32.png',
+  '/images/fav2/favicon-16x16.png',
   
   '/images/fav.jpg',
 

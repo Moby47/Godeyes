@@ -43,7 +43,7 @@ class captainController extends Controller
     public function morning($fullname)
     {
          $time = "morning";
-         $check = checkin::where('captain','=',$fullname)
+         $check = checkin::orderby('id','desc')->where('captain','=',$fullname)
          ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
          ->select('name', 'surname','id', 'created_at')->get();   
          return checkinres::collection($check);   
@@ -61,7 +61,7 @@ class captainController extends Controller
     public function evening($fullname)
     {
         $time = "evening";
-      $check = checkin::where('captain','=',$fullname)
+      $check = checkin::orderby('id','desc')->where('captain','=',$fullname)
       ->where('custom_date','=', date("Y-m-d"))->where('time','=', $time)
           ->select('name', 'surname','id', 'created_at')->get(); 
           return checkinres::collection($check);
@@ -146,14 +146,14 @@ class captainController extends Controller
 
 
     public function allLogs($fullname){
-        $log = checkin::where('captain','=',$fullname)
+        $log = checkin::orderby('id','desc')->where('captain','=',$fullname)
         ->select('id','name','surname','created_at','captain','time')->paginate(5);
         return checkinres::collection($log);  
     }
 
 
     public function allLogsFiltered($from,$to,$fullname){
-        $log = checkin::where('captain','=',$fullname)
+        $log = checkin::orderby('id','desc')->where('captain','=',$fullname)
         ->whereBetween('created_at',[$from,$to])->select('id','name','surname','created_at','captain','time')->paginate(5);
         return checkinres::collection($log);  
     }

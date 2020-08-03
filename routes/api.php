@@ -44,3 +44,8 @@ Route::Get('/all-logs-filtered/{from}/{to}/{fullname}', 'captainController@allLo
 
 Route::get('/export-file/{from}/{to}/{fullname}', 'captainController@export')->name('export');
 Route::get('/daily-export/{fullname}', 'captainController@dailyExport')->name('dailyExport');
+
+
+
+Route::Get('/passengers-count', 'riderController@passengers_count');
+Route::Get('/captains-count', 'riderController@captains_count');

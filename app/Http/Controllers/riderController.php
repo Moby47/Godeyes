@@ -102,7 +102,7 @@ class riderController extends Controller
 
     public function logs($id)
     {
-        $log = checkin::where('userId','=', $id)->select('id','created_at','captain','time')->paginate(3);
+        $log = checkin::orderby('id','desc')->where('userId','=', $id)->select('id','created_at','captain','time')->paginate(3);
         return checkinres::collection($log);   
     }
 
@@ -150,6 +150,20 @@ class riderController extends Controller
           return Excel::download(new DataExport, 'My_Shuttlers_Trip_history.xlsx');
 
     }
+
+    public function passengers_count() 
+    {
+         return $count = user::where('state','=',0)->count();
+
+    }
+
+
+    public function captains_count() 
+    {
+        return $count = user::where('state','=',1)->count();
+
+    }
+
 
 
 }

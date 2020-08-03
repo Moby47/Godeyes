@@ -42,7 +42,23 @@
     <v-btn class="button fg-white" style="background-color: #ce5247"  @click.prevent='last()'>My Last Check-In</v-btn>
     </div>
 
-
+    <v-card
+    class="mx-auto mt-1"
+    max-width="344"
+  >
+    <div class="skill-box">
+        <ul class="skills">
+            <li>
+                <span>Registered Passengers</span>
+                <span class="badge fg-white" style="background-color: #3b6b63">{{passengerCount}}</span>
+            </li>
+            <li>
+                <span>Registered Captains</span>
+                <span class="badge fg-white" style="background-color: #e08981">{{captainCount}}</span>
+            </li>
+        </ul>
+    </div>
+    </v-card>
 
 
   <v-footer class='foot-align text-center'>
@@ -88,7 +104,9 @@ export default {
         return {
            passenger:true,
            icon:'power',
-           btnColor:'#28a745'
+           btnColor:'#28a745',
+           passengerCount:'loading',
+           captainCount:'loading',
         }
     },
     mounted(){
@@ -97,8 +115,54 @@ export default {
                                 this.passenger = false
                             }
         this.isAuth()
+
+        this.passengerC()
+        this.captainC()
     },
     methods: {
+
+            passengerC(){
+               
+                var   page_url = '/api/passengers-count'
+                fetch(page_url)
+                .then(res => res.json())
+                .then(res=>{
+                   this.passengerCount = res;
+                })
+                .catch(error =>{
+                  console.log(error)
+                    //off loader
+                    var options = {
+                                showTop: true,
+                            }
+                         Metro.toast.create('Passenger count failed',
+                         null, 5000, 'yellow', options);
+                         Metro.activity.close(activity);
+                       
+                    })
+            },
+
+            captainC(){
+
+                var   page_url = '/api/captains-count'
+                fetch(page_url)
+                .then(res => res.json())
+                .then(res=>{
+                   this.captainCount = res;
+                })
+                .catch(error =>{
+                  console.log(error)
+                    //off loader
+                    var options = {
+                                showTop: true,
+                            }
+                         Metro.toast.create('Captain count failed',
+                         null, 5000, 'yellow', options);
+                         Metro.activity.close(activity);
+                       
+                    })
+
+            },
 
         out(){
             
